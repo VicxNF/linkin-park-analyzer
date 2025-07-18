@@ -1,0 +1,59 @@
+[
+    {
+      "albumTitle": "Hybrid Theory",
+      "year": 2000,
+      "cover": "https://upload.wikimedia.org/wikipedia/en/2/2a/Linkin_Park_Hybrid_Theory_Album_Cover.jpg",
+      "songs": [
+        {
+          "title": "Papercut",
+          "lyrics": "Why does it feel like night today?\nSomething in here's not right today.\nWhy am I so uptight today?\nParanoia's all I got left\nI don't know what stressed me first\nOr how the pressure was fed\nBut I know just what it's worth\nTo have a voice in the back of my head..."
+        },
+        {
+          "title": "One Step Closer",
+          "lyrics": "I cannot take this anymore\nI'm saying everything I've said before\nAll these words they make no sense\nI find bliss in ignorance\nLess I hear the less you'll say\nBut you'll find that out anyway\nJust like before..."
+        },
+        {
+          "title": "In the End",
+          "lyrics": "It starts with one thing\nI don't know why\nIt doesn't even matter how hard you try\nKeep that in mind, I designed this rhyme\nTo explain in due time\nAll I know\nTime is a valuable thing\nWatch it fly by as the pendulum swings..."
+        }
+      ]
+    },
+    {
+      "albumTitle": "Meteora",
+      "year": 2003,
+      "cover": "https://upload.wikimedia.org/wikipedia/en/thumb/8/83/Linkin_Park_-_Meteora.jpg/220px-Linkin_Park_-_Meteora.jpg",
+      "songs": [
+        {
+          "title": "Numb",
+          "lyrics": "I'm tired of being what you want me to be\nFeeling so faithless, lost under the surface\nDon't know what you're expecting of me\nPut under the pressure of walking in your shoes\nEvery step that I take is another mistake to you..."
+        },
+        {
+          "title": "Faint",
+          "lyrics": "I am a little bit of loneliness, a little bit of disregard\nA handful of complaints but I can't help the fact that everyone can see these scars\nI am what I want you to want, what I want you to feel\nBut it's like no matter what I do, I can't convince you to just believe this is real..."
+        },
+        {
+          "title": "Breaking the Habit",
+          "lyrics": "Memories consume\nLike opening the wound\nI'm picking me apart again\nYou all assume\nI'm safe here in my room\nUnless I try to start again\nI don't want to be the one\nThe battles always choose\n'Cause inside I realize\nThat I'm the one confused..."
+        }
+      ]
+    },
+    {
+        "albumTitle": "Minutes to Midnight",
+        "year": 2007,
+        "cover": "https://upload.wikimedia.org/wikipedia/en/7/7a/Minutes_to_Midnight_cover.jpg",
+        "songs": [
+          {
+            "title": "Leave Out All The Rest",
+            "lyrics": "When my time comes\nForget the wrong that I've done\nHelp me leave behind some\nReasons to be missed\nAnd don't resent me..."
+          },
+          {
+            "title": "What I've Done",
+            "lyrics": "So let mercy come and wash away\nWhat I've Done\nI'll face myself to crossout what I've become\nErase myselft and let go of what I've done..."
+          },
+          {
+            "title": "In Pieces",
+            "lyrics": "So I\nI will be the one\nBe the one to leave this\nIn Pieces\nAnd you\nYou will be alone\nAlone with all your secrets\nAnd regrets\nDon't lie..."
+          }
+        ]
+      }
+  ]
