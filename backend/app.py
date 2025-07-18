@@ -29,12 +29,9 @@ def analyze_sentiment(text):
 # Endpoint para obtener la lista de todos los álbumes
 @app.route('/api/albums', methods=['GET'])
 def get_albums():
-    # Extraer solo la información necesaria de cada álbum para la lista principal
-    album_list = [
-        {"title": album["albumTitle"], "year": album["year"], "cover": album["cover"]} 
-        for album in lyrics_data
-    ]
-    return jsonify(album_list)
+    # Ahora devolvemos la lista completa de álbumes con todas sus canciones.
+    # El frontend se encargará de mostrar lo que necesite.
+    return jsonify(lyrics_data)
 
 # Endpoint principal para analizar una canción específica
 @app.route('/api/analyze/<album_title>/<song_title>', methods=['GET'])

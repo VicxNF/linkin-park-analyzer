@@ -1,70 +1,64 @@
-# Getting Started with Create React App
+# Analizador de Sentimientos de Letras de Linkin Park
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Captura de Pantalla de la App](./screenshot.png) <!-- Reemplaza con una captura de pantalla real -->
 
-## Available Scripts
+Una aplicación web full-stack que permite a los usuarios explorar la discografía de Linkin Park y analizar la carga emocional de las letras de sus canciones, visualizando los resultados de manera gráfica.
 
-In the project directory, you can run:
+**[➡️ Ver Demo en Vivo](https://TU-LINK-DE-VERCEL.app)** <!-- Actualizarás esto al final -->
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## ✨ Características
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+*   **Interfaz Interactiva:** Explora los álbumes y canciones de Linkin Park.
+*   **Análisis de Sentimientos en Tiempo Real:** Haz clic en una canción para analizar su letra al instante.
+*   **Visualización de Datos:** Un gráfico de dona muestra la distribución de sentimientos (positivo, negativo, neutral).
+*   **API RESTful en Backend:** El frontend consume datos de una API construida con Flask.
+*   **Diseño Responsivo:** Funciona bien en diferentes tamaños de pantalla.
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🚀 Stack Tecnológico
 
-### `npm run build`
+*   **Frontend:** React, Axios, Chart.js
+*   **Backend:** Python, Flask, NLTK (VADER)
+*   **Base de Datos:** Un archivo `JSON` estático como fuente de datos.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## local_development Cómo Ejecutar Localmente
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Sigue estos pasos para levantar el proyecto en tu máquina.
 
-### `npm run eject`
+### Prerrequisitos
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+*   Python 3.x
+*   Node.js y npm
+*   Git
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Instalación
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1.  **Clona el repositorio:**
+    ```bash
+    git clone https://github.com/TU_USUARIO/linkin-park-analyzer.git
+    cd linkin-park-analyzer
+    ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+2.  **Configura el Backend:**
+    ```bash
+    cd backend
+    python -m venv venv
+    # En Windows: venv\Scripts\activate
+    # En Mac/Linux: source venv/bin/activate
+    pip install -r requirements.txt # Crearemos este archivo pronto
+    flask run
+    ```
+    El backend estará corriendo en `http://127.0.0.1:5000`.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+3.  **Configura el Frontend (en otra terminal):**
+    ```bash
+    cd frontend
+    npm install
+    npm start
+    ```
+    La aplicación se abrirá en `http://localhost:3000`.
