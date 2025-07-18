@@ -159,3 +159,18 @@ h1, .album-title {
 body, .album-year, .song-item {
   font-family: 'Roboto', sans-serif;
 }
+
+.player-container {
+  max-width: 500px;
+  margin: 30px auto;
+  border-radius: 8px;
+  overflow: hidden; /* Asegura que el IFrame respete el borde redondeado */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+}
+
+.results-section {
+  margin-top: 50px; /* Añade un espacio generoso entre los álbumes y los resultados */
+  padding-top: 30px;
+  border-top: 1px solid #333; /* Una línea sutil para separar las secciones */
+  width: 100%;
+}

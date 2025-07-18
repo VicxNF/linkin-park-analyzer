@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AnalysisChart from './components/AnalysisChart';
 import './App.css';
+import YouTube from 'react-youtube'; 
 
 // La URL base de nuestra API de Flask
 const API_URL = 'https://linkin-park-api.onrender.com';
@@ -11,6 +12,7 @@ function App() {
   const [selectedSongAnalysis, setSelectedSongAnalysis] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [currentVideoId, setCurrentVideoId] = useState(null);
 
   // useEffect se ejecuta una vez para cargar todos los datos de los álbumes
   useEffect(() => {
@@ -27,11 +29,13 @@ function App() {
   const handleSongClick = (albumTitle, songTitle) => {
     setIsLoading(true);
     setSelectedSongAnalysis(null);
+    setCurrentVideoId(null);
     setError('');
 
     axios.get(`${API_URL}/api/analyze/${albumTitle}/${songTitle}`)
       .then(response => {
         setSelectedSongAnalysis(response.data);
+        setCurrentVideoId(response.data.videoId);
       })
       .catch(error => {
         console.error("Hubo un error al analizar la canción:", error);
@@ -42,21 +46,17 @@ function App() {
       });
   };
 
+  const playerOptions = {
+    height: '300', // Altura del reproductor
+    width: '100%',  // Hará que ocupe todo el ancho de su contenedor
+    playerVars: {
+      autoplay: 1, // Reproduce automáticamente al cargar
+    },
+  };
+
   return (
     <div className="App">
       <h1>Analizador de Sentimientos de Letras de Linkin Park</h1>
-      
-      {isLoading && <p>Analizando...</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      
-      {selectedSongAnalysis && (
-        <div className="analysis-result">
-          <h2>Análisis de: "{selectedSongAnalysis.song}"</h2>
-          <div className="chart-container">
-            <AnalysisChart sentiment={selectedSongAnalysis.sentiment} />
-          </div>
-        </div>
-      )}
 
       <div className="albums-container">
         {albums.map(album => (
@@ -74,6 +74,30 @@ function App() {
         </div>
         ))}
       </div>
+
+      {(isLoading || selectedSongAnalysis) && (
+      <div className="results-section">
+        
+        {/* Los mensajes de carga y error van aquí dentro */}
+        {isLoading && <p>Analizando y cargando canción...</p>}
+        {error && <p style={{ color: 'red' }}>{error}</p>}
+
+        {/* El reproductor */}
+        {currentVideoId && (
+          <div className="player-container">
+            <YouTube videoId={currentVideoId} opts={playerOptions} />
+          </div>
+        )}
+        {selectedSongAnalysis && (
+          <div className="analysis-result">
+            <h2>Análisis de: "{selectedSongAnalysis.song}"</h2>
+            <div className="chart-container">
+              <AnalysisChart sentiment={selectedSongAnalysis.sentiment} />
+            </div>
+          </div>
+        )}
+      </div>
+      )}
     </div>
   );
 }

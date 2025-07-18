@@ -5,6 +5,10 @@ import os   # Asegúrate de que os esté importado
 from flask import Flask, jsonify
 from flask_cors import CORS
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
+from googleapiclient.discovery import build
+
+YOUTUBE_API_KEY = 'AIzaSyCMkXDBzPaXqYi2SOXWUJeM7tKMltjGKxU' # Mejor si usas variables de entorno
+youtube = build('youtube', 'v3', developerKey=YOUTUBE_API_KEY)
 
 nltk_data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'nltk_data')
 nltk.data.path.append(nltk_data_dir)
@@ -38,6 +42,23 @@ def get_albums():
     # El frontend se encargará de mostrar lo que necesite.
     return jsonify(lyrics_data)
 
+def search_youtube_video(song_title):
+    query = f"Linkin Park {song_title} Official Audio"
+    try:
+        search_response = youtube.search().list(
+            q=query,
+            part='id',
+            maxResults=1,
+            type='video'
+        ).execute()
+
+        # Extrae el ID del primer video encontrado
+        video_id = search_response['items'][0]['id']['videoId']
+        return video_id
+    except Exception as e:
+        print(f"Error al buscar en YouTube: {e}")
+        return None
+
 # Endpoint principal para analizar una canción específica
 @app.route('/api/analyze/<album_title>/<song_title>', methods=['GET'])
 def analyze_song(album_title, song_title):
@@ -54,13 +75,15 @@ def analyze_song(album_title, song_title):
     # Analizar la letra de la canción encontrada
     lyrics = song_found.get("lyrics", "")
     sentiment_scores = analyze_sentiment(lyrics)
+    video_id = search_youtube_video(song_title)
 
     # Devolver los resultados en formato JSON
     return jsonify({
         "album": album_title,
         "song": song_title,
         "lyrics": lyrics,
-        "sentiment": sentiment_scores
+        "sentiment": sentiment_scores,
+        "videoId": video_id
     })
 
 # 5. Iniciar el servidor

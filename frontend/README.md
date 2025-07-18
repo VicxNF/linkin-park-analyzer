@@ -4,7 +4,7 @@
 
 Una aplicación web full-stack que permite a los usuarios explorar la discografía de Linkin Park y analizar la carga emocional de las letras de sus canciones, visualizando los resultados de manera gráfica.
 
-**[➡️ Ver Demo en Vivo](https://TU-LINK-DE-VERCEL.app)** <!-- Actualizarás esto al final -->
+**[➡️ Ver Demo en Vivo](https://linkin-park-analyzer.vercel.app)** <!-- Actualizarás esto al final -->
 
 ---
 
