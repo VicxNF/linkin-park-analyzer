@@ -174,3 +174,46 @@ body, .album-year, .song-item {
   border-top: 1px solid #333; /* Una línea sutil para separar las secciones */
   width: 100%;
 }
+
+.analysis-content {
+  display: flex;
+  flex-wrap: wrap; /* Permite que se pongan uno debajo del otro en pantallas pequeñas */
+  justify-content: center;
+  gap: 30px; /* Espacio entre el gráfico y las letras */
+  margin-top: 20px;
+}
+
+.lyrics-container {
+  flex: 1; /* Permite que ocupe el espacio disponible */
+  min-width: 300px; /* Ancho mínimo */
+  max-height: 400px; /* ¡La clave! Altura máxima antes de que aparezca el scroll */
+  overflow-y: auto;  /* ¡La clave! Añade una barra de scroll vertical si el texto es muy largo */
+  background-color: #181818; /* Un fondo ligeramente diferente para distinguirlo */
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #2c2c2c;
+  text-align: left; /* Alineamos el texto a la izquierda para una mejor lectura */
+}
+
+.lyrics-container pre {
+  white-space: pre-wrap; /* Respeta los saltos de línea y ajusta el texto si una línea es muy larga */
+  font-family: 'Roboto', sans-serif; /* Usamos una fuente legible */
+  font-size: 1rem;
+  line-height: 1.6; /* Aumenta el espacio entre líneas para facilitar la lectura */
+  color: #dcdcdc;
+  margin: 0; /* Quitamos el margen por defecto de la etiqueta <pre> */
+}
+
+.lyrics-container::-webkit-scrollbar {
+  width: 8px;
+}
+.lyrics-container::-webkit-scrollbar-track {
+  background: #181818;
+}
+.lyrics-container::-webkit-scrollbar-thumb {
+  background-color: #444;
+  border-radius: 4px;
+}
+.lyrics-container::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}

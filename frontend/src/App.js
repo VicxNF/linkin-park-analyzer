@@ -90,11 +90,19 @@ function App() {
         )}
         {selectedSongAnalysis && (
           <div className="analysis-result">
-            <h2>Análisis de: "{selectedSongAnalysis.song}"</h2>
+          <h2>Análisis de: "{selectedSongAnalysis.song}"</h2>
+          <div className="analysis-content"> {/* Un nuevo contenedor flex */}
             <div className="chart-container">
               <AnalysisChart sentiment={selectedSongAnalysis.sentiment} />
             </div>
+            
+            {/* --- CONTENEDOR DE LAS LETRAS --- */}
+            <div className="lyrics-container">
+              <pre>{selectedSongAnalysis.lyrics}</pre>
+            </div>
+            {/* ---------------------------------- */}
           </div>
+        </div>
         )}
       </div>
       )}
