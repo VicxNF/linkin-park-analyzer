@@ -61,17 +61,17 @@ function App() {
       <div className="albums-container">
         {albums.map(album => (
           <div key={album.albumTitle} className="album-card">
-            <img src={album.cover} alt={album.albumTitle} className="album-cover" />
-            <h3 className="album-title">{album.albumTitle}</h3>
-            <p className="album-year">{album.year}</p>
-            <ul className="song-list">
-              {album.songs.map(song => (
-                <li key={song.title} className="song-item" onClick={() => handleSongClick(album.albumTitle, song.title)}>
-                  {song.title}
-                </li>
-              ))}
-            </ul>
+          <img src={album.cover} alt={album.albumTitle} className="album-cover" />
+          <div className="song-list">  {/* Esta es la capa que aparece al hacer hover */}
+            <h3 className="album-title-hover">{album.albumTitle}</h3> {/* Un h3 para el título en hover */}
+            <p className="album-year-hover">{album.year}</p>
+            {album.songs.map(song => (
+              <li key={song.title} className="song-item" onClick={() => handleSongClick(album.albumTitle, song.title)}>
+                {song.title}
+              </li>
+            ))}
           </div>
+        </div>
         ))}
       </div>
     </div>
