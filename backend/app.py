@@ -1,8 +1,13 @@
 # 1. Importar las librerías necesarias
 import json
+import nltk # Asegúrate de que nltk esté importado
+import os   # Asegúrate de que os esté importado
 from flask import Flask, jsonify
 from flask_cors import CORS
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
+
+nltk_data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'nltk_data')
+nltk.data.path.append(nltk_data_dir)
 
 # 2. Configurar la aplicación Flask
 app = Flask(__name__)
