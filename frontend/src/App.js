@@ -1,20 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import AnalysisChart from './components/AnalysisChart';
 import './App.css';
-import YouTube from 'react-youtube'; 
+// Nota: Ya no necesitamos AnalysisChart ni YouTube, así que se pueden quitar si quieres.
 
-// La URL base de nuestra API de Flask
-const API_URL = 'https://linkin-park-api.onrender.com';
+// La URL de tu API. Asegúrate de que sea la correcta (local o de Render).
+const API_URL = 'http://127.0.0.1:5000'; // O tu URL de Render desplegada
 
 function App() {
-  const [albums, setAlbums] = useState([]); // Estado para guardar los datos de la API
-  const [selectedSongAnalysis, setSelectedSongAnalysis] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
-  const [currentVideoId, setCurrentVideoId] = useState(null);
+  // --- ESTADOS PRINCIPALES ---
+  const [albums, setAlbums] = useState([]); // Almacena todos los álbumes y canciones
+  const [error, setError] = useState(''); // Para errores generales
+  
+  // --- NUEVOS ESTADOS PARA LA LÓGICA INTERACTIVA ---
+  const [selectedSongTitle, setSelectedSongTitle] = useState(''); // Guarda el título de la canción elegida
+  const [selectedLyrics, setSelectedLyrics] = useState(''); // Guarda las letras de la canción elegida
+  const [selectedText, setSelectedText] = useState(''); // Guarda el texto que el usuario subraya
+  const [analysisResponse, setAnalysisResponse] = useState(''); // Guarda la respuesta de la IA
+  const [isAnalyzing, setIsAnalyzing] = useState(false); // Estado de carga para el análisis de la IA
 
-  // useEffect se ejecuta una vez para cargar todos los datos de los álbumes
+  // Carga los datos de los álbumes desde la API al iniciar la app
   useEffect(() => {
     axios.get(`${API_URL}/api/albums`)
       .then(response => {
@@ -26,85 +30,125 @@ function App() {
       });
   }, []); // El array vacío asegura que solo se ejecute una vez
 
-  const handleSongClick = (albumTitle, songTitle) => {
-    setIsLoading(true);
-    setSelectedSongAnalysis(null);
-    setCurrentVideoId(null);
-    setError('');
-
-    axios.get(`${API_URL}/api/analyze/${albumTitle}/${songTitle}`)
-      .then(response => {
-        setSelectedSongAnalysis(response.data);
-        setCurrentVideoId(response.data.videoId);
-      })
-      .catch(error => {
-        console.error("Hubo un error al analizar la canción:", error);
-        setError('No se pudo analizar la canción.');
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+  // Se activa al hacer clic en una canción. Prepara la sección de análisis.
+  const handleSongClick = (song) => {
+    setSelectedSongTitle(song.title);
+    setSelectedLyrics(song.lyrics);
+    setSelectedText(''); // Limpiamos la selección de texto anterior
+    setAnalysisResponse(''); // Limpiamos el análisis anterior
+  };
+  
+  // Se activa cada vez que el usuario termina de seleccionar texto con el ratón.
+  const handleTextSelection = () => {
+    const text = window.getSelection().toString().trim();
+    if (text) {
+      setSelectedText(text);
+    }
   };
 
-  const playerOptions = {
-    height: '300', // Altura del reproductor
-    width: '100%',  // Hará que ocupe todo el ancho de su contenedor
-    playerVars: {
-      autoplay: 1, // Reproduce automáticamente al cargar
-    },
+  // Llama a nuestra nueva API para analizar el fragmento seleccionado.
+  const handleAnalyzeSnippet = () => {
+    if (!selectedText) return;
+    setIsAnalyzing(true);
+    setAnalysisResponse('');
+
+    axios.post(`${API_URL}/api/analyze-snippet`, { snippet: selectedText })
+      .then(response => {
+        setAnalysisResponse(response.data.analysis);
+      })
+      .catch(error => {
+        console.error("Hubo un error al analizar el fragmento:", error);
+        setAnalysisResponse("Hubo un error al generar el análisis. Inténtalo de nuevo.");
+      })
+      .finally(() => {
+        setIsAnalyzing(false);
+      });
   };
 
   return (
     <div className="App">
-      <h1>Analizador de Sentimientos de Letras de Linkin Park</h1>
+      <h1>Analizador de Sentimientos de Linkin Park</h1>
+      <p className="subtitle">Selecciona una canción y luego subraya cualquier parte de la letra que quieras analizar.</p>
+      
+      {error && <p style={{ color: 'red' }}>{error}</p>}
 
+      {/* SECCIÓN DE SELECCIÓN DE ÁLBUMES */}
       <div className="albums-container">
         {albums.map(album => (
           <div key={album.albumTitle} className="album-card">
-          <img src={album.cover} alt={album.albumTitle} className="album-cover" />
-          <div className="song-list">  {/* Esta es la capa que aparece al hacer hover */}
-            <h3 className="album-title-hover">{album.albumTitle}</h3> {/* Un h3 para el título en hover */}
-            <p className="album-year-hover">{album.year}</p>
-            {album.songs.map(song => (
-              <li key={song.title} className="song-item" onClick={() => handleSongClick(album.albumTitle, song.title)}>
-                {song.title}
-              </li>
-            ))}
+            <img src={album.cover} alt={album.albumTitle} className="album-cover" />
+            <div className="song-list">
+              <h3 className="album-title-hover">{album.albumTitle}</h3>
+              <p className="album-year-hover">{album.year}</p>
+              {album.songs.map(song => (
+                <li 
+                  key={song.title} 
+                  className="song-item" 
+                  // ¡CAMBIO IMPORTANTE! Pasamos el objeto 'song' completo.
+                  onClick={() => handleSongClick(song)}
+                >
+                  {song.title}
+                </li>
+              ))}
+            </div>
           </div>
-        </div>
         ))}
       </div>
 
-      {(isLoading || selectedSongAnalysis) && (
-      <div className="results-section">
-        
-        {/* Los mensajes de carga y error van aquí dentro */}
-        {isLoading && <p>Analizando y cargando canción...</p>}
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-
-        {/* El reproductor */}
-        {currentVideoId && (
-          <div className="player-container">
-            <YouTube videoId={currentVideoId} opts={playerOptions} />
+      {/* --- NUEVA SECCIÓN DE ANÁLISIS INTERACTIVO --- */}
+      {/* Esta sección solo aparece si se ha seleccionado una canción */}
+      {selectedLyrics && (
+        <div className="interactive-analysis-section">
+          
+          {/* Columna Izquierda: Las Letras */}
+          <div className="lyrics-display">
+            <h2>Letra de: "{selectedSongTitle}"</h2>
+            <pre onMouseUp={handleTextSelection}>{selectedLyrics}</pre>
           </div>
-        )}
-        {selectedSongAnalysis && (
-          <div className="analysis-result">
-          <h2>Análisis de: "{selectedSongAnalysis.song}"</h2>
-          <div className="analysis-content"> {/* Un nuevo contenedor flex */}
-            <div className="chart-container">
-              <AnalysisChart sentiment={selectedSongAnalysis.sentiment} />
-            </div>
+          
+          {/* Columna Derecha: Controles y Respuesta de la IA */}
+          <div className="analysis-controls">
+            <h3>Analizador Interactivo</h3>
+            <p>1. Selecciona un fragmento de la letra con tu ratón.</p>
+            <p>2. Presiona el botón para obtener el análisis.</p>
+
+            {selectedText && !isAnalyzing && (
+              <div className="selected-snippet-card">
+                <p><strong>Analizando fragmento:</strong></p>
+                <blockquote>"{selectedText}"</blockquote>
+              </div>
+            )}
+
             
-            {/* --- CONTENEDOR DE LAS LETRAS --- */}
-            <div className="lyrics-container">
-              <pre>{selectedSongAnalysis.lyrics}</pre>
-            </div>
-            {/* ---------------------------------- */}
+            <button 
+              onClick={handleAnalyzeSnippet} 
+              disabled={!selectedText || isAnalyzing}
+            >
+              {isAnalyzing ? 'PENSANDO...' : 'Analizar Selección'}
+            </button>
+
+            {isAnalyzing && (
+              <div className="loading-container">
+                <div className="spinner"></div>
+                <p>Conectando con la IA...</p>
+              </div>
+            )}
+            
+            {/* Muestra la respuesta del "chatbot" aquí */}
+            {analysisResponse && !isAnalyzing && (
+              <div className="chatbot-response">
+                <h4>Análisis de la IA:</h4>
+                <p>{analysisResponse}</p>
+              </div>
+            )}
+            {!selectedText && !analysisResponse && (
+              <div className="placeholder-text">
+                  <p>1. Selecciona un fragmento de la letra con tu ratón.</p>
+                  <p>2. Presiona el botón para obtener el análisis.</p>
+              </div>
+            )}
           </div>
         </div>
-        )}
-      </div>
       )}
     </div>
   );
