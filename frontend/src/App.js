@@ -4,7 +4,7 @@ import './App.css';
 // Nota: Ya no necesitamos AnalysisChart ni YouTube, así que se pueden quitar si quieres.
 
 // La URL de tu API. Asegúrate de que sea la correcta (local o de Render).
-const API_URL = 'http://127.0.0.1:5000'; // O tu URL de Render desplegada
+const API_URL = 'https://linkin-park-api.onrender.com'; // O tu URL de Render desplegada
 
 function App() {
   // --- ESTADOS PRINCIPALES ---
