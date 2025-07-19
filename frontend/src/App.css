@@ -8,7 +8,7 @@ body {
   padding: 0;
   background-image: linear-gradient(rgba(18, 18, 18, 0.85), rgba(18, 18, 18, 0.95)), url('./assets/linkinpark.jpg');
   background-size: cover;
-  background-attachment: fixed; /* Mantiene la imagen fija al hacer scroll */
+  background-attachment: fixed;
 }
 
 .App {
@@ -32,16 +32,16 @@ h1 {
 }
 
 .album-card {
-  position: relative; /* Necesario para la superposición */
+  position: relative;
   background-color: #1e1e1e;
   border-radius: 8px;
-  overflow: hidden; /* Esconde lo que se salga de la tarjeta */
+  overflow: hidden;
   transition: transform 0.3s ease;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
 
 .album-card:hover {
-  transform: scale(1.05); /* Agranda la tarjeta al pasar el ratón */
+  transform: scale(1.05);
 }
 
 .album-card .album-cover {
@@ -51,7 +51,7 @@ h1 {
 }
 
 .album-card:hover .album-cover {
-  filter: brightness(0.3); /* Oscurece la portada al pasar el ratón */
+  filter: brightness(0.3);
 }
 
 .album-card .song-list {
@@ -65,10 +65,10 @@ h1 {
   justify-content: center;
   align-items: center;
   padding: 10px;
-  opacity: 0; /* Totalmente transparente */
+  opacity: 0;
   transition: opacity 0.3s ease;
   background-color: rgba(0, 0, 0, 0.7);
-  overflow-y: auto; /* Permite scroll si hay muchas canciones */
+  overflow-y: auto;
 }
 
 .album-card:hover .song-list {
@@ -87,17 +87,17 @@ h1 {
 }
 
 .album-title-hover {
-  font-family: 'Oswald', sans-serif; /* Usamos la misma fuente de títulos que definimos antes */
-  font-size: 1.5rem; /* Un tamaño de fuente grande y legible */
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.5rem;
   font-weight: 700;
-  color: #ffffff; /* Color blanco para que contraste con el fondo oscuro */
-  text-transform: uppercase; /* Lo ponemos en mayúsculas para un estilo más fuerte */
+  color: #ffffff;
+  text-transform: uppercase;
   letter-spacing: 1px;
-  margin-bottom: 15px; /* Espacio entre el título y la lista de canciones */
-  padding-bottom: 10px; /* Espacio debajo del texto */
-  border-bottom: 2px solid #e50914; /* Una línea de acento roja debajo del título, a juego con el hover de las canciones */
-  width: 90%; /* Ancho similar al de los items de las canciones */
-  text-align: center; /* Centramos el texto */
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e50914;
+  width: 90%;
+  text-align: center;
 }
 
 .album-year {
@@ -106,11 +106,11 @@ h1 {
 }
 
 .album-year-hover {
-  font-family: 'Roboto', sans-serif; /* Usamos la fuente secundaria, más legible */
-  font-size: 0.9rem; /* Más pequeño que el título para darle menos importancia */
-  color: #a0a0a0; /* Un gris claro para que no compita con el título */
-  margin-top: -10px; /* Lo acercamos un poco al título */
-  margin-bottom: 15px; /* Le damos espacio antes de que empiece la lista de canciones */
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9rem;
+  color: #a0a0a0;
+  margin-top: -10px;
+  margin-bottom: 15px;
   text-align: center;
   font-weight: 500;
 }
@@ -127,13 +127,13 @@ h1 {
   margin: 4px 0;
   text-align: center;
   background-color: transparent;
-  border-bottom: 1px solid #444; /* Separador sutil */
+  border-bottom: 1px solid #444;
   transition: background-color 0.2s;
   cursor: pointer;
 }
 
 .song-item:hover {
-  background-color: #e50914; /* Un color de acento inspirado en el logo de LP */
+  background-color: #e50914;
   color: #fff;
 }
 
@@ -152,7 +152,7 @@ h1 {
 
 h1, .album-title {
   font-family: 'Oswald', sans-serif;
-  text-transform: uppercase; /* ¡Un gran toque para los títulos! */
+  text-transform: uppercase;
   letter-spacing: 1.5px;
 }
 
@@ -164,44 +164,44 @@ body, .album-year, .song-item {
   max-width: 500px;
   margin: 30px auto;
   border-radius: 8px;
-  overflow: hidden; /* Asegura que el IFrame respete el borde redondeado */
+  overflow: hidden;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
 }
 
 .results-section {
-  margin-top: 50px; /* Añade un espacio generoso entre los álbumes y los resultados */
+  margin-top: 50px;
   padding-top: 30px;
-  border-top: 1px solid #333; /* Una línea sutil para separar las secciones */
+  border-top: 1px solid #333;
   width: 100%;
 }
 
 .analysis-content {
   display: flex;
-  flex-wrap: wrap; /* Permite que se pongan uno debajo del otro en pantallas pequeñas */
+  flex-wrap: wrap;
   justify-content: center;
-  gap: 30px; /* Espacio entre el gráfico y las letras */
+  gap: 30px;
   margin-top: 20px;
 }
 
 .lyrics-container {
-  flex: 1; /* Permite que ocupe el espacio disponible */
-  min-width: 300px; /* Ancho mínimo */
-  max-height: 400px; /* ¡La clave! Altura máxima antes de que aparezca el scroll */
-  overflow-y: auto;  /* ¡La clave! Añade una barra de scroll vertical si el texto es muy largo */
-  background-color: #181818; /* Un fondo ligeramente diferente para distinguirlo */
+  flex: 1;
+  min-width: 300px;
+  max-height: 400px;
+  overflow-y: auto;
+  background-color: #181818;
   padding: 20px;
   border-radius: 8px;
   border: 1px solid #2c2c2c;
-  text-align: left; /* Alineamos el texto a la izquierda para una mejor lectura */
+  text-align: left;
 }
 
 .lyrics-container pre {
-  white-space: pre-wrap; /* Respeta los saltos de línea y ajusta el texto si una línea es muy larga */
-  font-family: 'Roboto', sans-serif; /* Usamos una fuente legible */
+  white-space: pre-wrap;
+  font-family: 'Roboto', sans-serif;
   font-size: 1rem;
-  line-height: 1.6; /* Aumenta el espacio entre líneas para facilitar la lectura */
+  line-height: 1.6;
   color: #dcdcdc;
-  margin: 0; /* Quitamos el margen por defecto de la etiqueta <pre> */
+  margin: 0;
 }
 
 .lyrics-container::-webkit-scrollbar {
@@ -221,7 +221,7 @@ body, .album-year, .song-item {
 .analysis-controls {
   flex: 1;
   min-width: 300px;
-  background-color: #1e1e1e; /* Le damos un fondo para que se sienta como un panel */
+  background-color: #1e1e1e;
   padding: 25px;
   border-radius: 8px;
   border: 1px solid #2c2c2c;
@@ -261,11 +261,9 @@ body, .album-year, .song-item {
 }
 
 .analysis-controls button {
-  /* ... tus estilos de botón existentes son geniales, los mantenemos ... */
-  margin-bottom: 20px; /* Le damos un margen inferior */
+  margin-bottom: 20px;
 }
 
-/* Animación de carga */
 .loading-container {
   text-align: center;
   color: #a0a0a0;
@@ -274,7 +272,7 @@ body, .album-year, .song-item {
   width: 40px;
   height: 40px;
   border: 4px solid #444;
-  border-top-color: #e50914; /* Color de acento */
+  border-top-color: #e50914;
   border-radius: 50%;
   animation: spin 1s linear infinite;
   margin: 20px auto;
@@ -290,10 +288,10 @@ body, .album-year, .song-item {
   width: 100%;
   margin-top: 20px;
   padding: 20px;
-  background-color: rgba(44, 44, 44, 0.5); /* Fondo semitransparente */
-  border-left: 4px solid #00c853; /* Verde para la respuesta exitosa de la IA */
+  background-color: rgba(44, 44, 44, 0.5);
+  border-left: 4px solid #00c853;
   border-radius: 5px;
-  animation: fadeIn 0.5s ease-in-out; /* Animación de aparición */
+  animation: fadeIn 0.5s ease-in-out;
 }
 .chatbot-response h4 {
   margin: 0 0 10px 0;
@@ -325,4 +323,35 @@ body, .album-year, .song-item {
   border-radius: 8px;
   width: 100%;
   margin-top: 20px;
+}
+
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: #181818;
+  border-bottom: 1px solid #2c2c2c;
+}
+
+.logo-link {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: #fff;
+  letter-spacing: 2px;
+}
+
+.main-nav a {
+  font-family: 'Roboto', sans-serif;
+  color: #a0a0a0;
+  text-decoration: none;
+  margin-left: 25px;
+  font-size: 1rem;
+  transition: color 0.2s;
+}
+
+.main-nav a:hover {
+  color: #fff;
 }

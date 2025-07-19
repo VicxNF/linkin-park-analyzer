@@ -1,0 +1,26 @@
+/* src/views/MusicHub.css */
+
+.music-hub-container {
+    display: flex;
+    gap: 30px; /* Espacio entre el video y la playlist */
+    padding: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+    height: 70vh; /* Altura del contenedor, puedes ajustarlo */
+    flex-wrap: wrap; /* Para que se vea bien en pantallas pequeñas */
+  }
+  
+  .video-panel {
+    flex: 3; /* El video ocupará más espacio */
+    min-width: 300px;
+    height: 100%;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+    border-radius: 12px;
+    overflow: hidden; /* Asegura que el iframe respete el borde */
+  }
+  
+  .playlist-panel {
+    flex: 2; /* La playlist ocupará menos espacio */
+    min-width: 280px;
+    height: 100%;
+  }
