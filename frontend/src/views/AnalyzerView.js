@@ -3,7 +3,7 @@ import axios from 'axios';
 import AlbumModal from '../components/AlbumModal';
 import '../App.css';
 
-const API_URL = 'https://linkin-park-api.onrender.com';
+const API_URL = 'http://127.0.0.1:5000';
 
 function AnalyzerView() {
   const [albums, setAlbums] = useState([]);
