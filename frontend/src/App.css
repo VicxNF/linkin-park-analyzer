@@ -1,8 +1,7 @@
-/* --- ESTILOS GLOBALES Y DE BASE --- */
 body {
   background-color: #121212;
   color: #e0e0e0;
-  font-family: 'Roboto', sans-serif; /* Usamos Roboto como base para el cuerpo */
+  font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
   background-image: linear-gradient(rgba(18, 18, 18, 0.85), rgba(18, 18, 18, 0.95)), url('./assets/linkinpark.jpg');
@@ -12,20 +11,19 @@ body {
 
 .App {
   text-align: center;
-  /* Eliminamos el max-width aquí para dar más flexibilidad a las vistas */
-  margin: 0 auto; /* Margin auto sigue centrando el contenido */
+  margin: 0 auto;
   padding: 20px;
 }
 
 h1, h2, h3, h4 {
-  font-family: 'Oswald', sans-serif; /* Centralizamos la fuente de todos los títulos */
+  font-family: 'Oswald', sans-serif;
   text-transform: uppercase;
 }
 
 h1 {
   font-size: 2.5rem;
   color: #ffffff;
-  margin-bottom: 10px; /* Reducimos el margen */
+  margin-bottom: 10px;
   letter-spacing: 1.5px;
 }
 
@@ -33,21 +31,20 @@ h1 {
   color: #a0a0a0;
   margin-top: 0;
   margin-bottom: 40px;
-  max-width: 500px; /* Le damos un ancho máximo para que no se estire mucho */
+  max-width: 500px;
   margin-left: auto;
   margin-right: auto;
 }
 
-/* --- ESTILOS DE NAVEGACIÓN --- */
 .main-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px 40px;
-  background-color: rgba(24, 24, 24, 0.8); /* Fondo semitransparente con blur */
+  background-color: rgba(24, 24, 24, 0.8);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid #2c2c2c;
-  position: sticky; /* Hacemos que la navegación sea pegajosa */
+  position: sticky;
   top: 0;
   z-index: 1000;
 }
@@ -72,7 +69,6 @@ h1 {
   color: #fff;
 }
 
-/* --- ESTILOS PARA LAS TARJETAS DE ÁLBUMES --- */
 .albums-container {
   display: flex;
   flex-wrap: wrap;
@@ -124,8 +120,6 @@ h1 {
   color: #a0a0a0;
 }
 
-
-/* --- ESTILOS DE LA SECCIÓN DE ANÁLISIS INTERACTIVO --- */
 .interactive-analysis-section {
   display: flex;
   gap: 30px;
@@ -135,13 +129,12 @@ h1 {
   align-items: flex-start;
 }
 
-/* Columna de las letras */
 .lyrics-display {
-  flex: 2; /* Ocupa más espacio */
+  flex: 2;
   background-color: #1e1e1e;
   padding: 25px;
   border-radius: 8px;
-  max-height: 70vh; /* Altura máxima en escritorio */
+  max-height: 70vh;
   overflow-y: auto;
 }
 
@@ -176,17 +169,16 @@ h1 {
   font-weight: bold;
 }
 
-/* Columna del panel de análisis */
 .analysis-controls {
-  flex: 1; /* Ocupa menos espacio */
+  flex: 1;
   background-color: #1e1e1e;
   padding: 25px;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: sticky; /* El panel se queda fijo al hacer scroll */
-  top: 100px; /* Espacio desde la barra de navegación pegajosa */
+  position: sticky;
+  top: 100px;
 }
 
 .analysis-controls h3 {
@@ -275,13 +267,13 @@ h1 {
 
 .chatbot-response .analyzed-quote {
   padding: 10px;
-  margin: 0 0 20px 0; /* Espacio debajo, antes del análisis */
+  margin: 0 0 20px 0; 
   background-color: rgba(0, 0, 0, 0.2);
   border-left: 3px solid #777;
   border-radius: 4px;
   font-style: italic;
   color: #c0c0c0;
-  white-space: pre-wrap; /* Respeta los saltos de línea del snippet */
+  white-space: pre-wrap;
 }
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
@@ -299,89 +291,100 @@ h1 {
 }
 
 
-/* --- REGLAS PARA MÓVILES (RESPONSIVE DESIGN) --- */
-/* Este bloque anula los estilos de escritorio cuando la pantalla es estrecha */
-
 @media (max-width: 900px) {
 
-  /* 1. Ajustes Generales del Layout */
   .App {
-    padding: 0 10px; /* Menos padding lateral en la app general */
+    padding: 0 10px;
   }
 
   .analyzer-view-container h1 {
-    font-size: 1.8rem; /* Reducimos el tamaño del título principal */
+    font-size: 1.8rem;
     margin-bottom: 5px;
   }
   
   .subtitle {
-    font-size: 0.9rem; /* Hacemos el subtítulo más pequeño */
+    font-size: 0.9rem;
     margin-bottom: 30px;
   }
 
-  /* 2. Ajustes de la Navegación (Header) */
   .main-header {
     padding: 15px 20px;
     flex-direction: column;
     gap: 15px;
   }
 
-  /* 3. Ajustes de las Tarjetas de Álbum */
   .album-card {
-    width: 150px; /* Hacemos las tarjetas de álbum más pequeñas */
+    width: 150px;
   }
   .album-title-hover {
-    font-size: 1.2rem; /* Reducimos el texto dentro de las tarjetas */
+    font-size: 1.2rem;
   }
 
-  /* 4. Ajustes CRÍTICOS para la Sección de Análisis */
   .interactive-analysis-section {
     flex-direction: column;
     align-items: center;
-    gap: 20px; /* Reducimos el espacio entre las dos columnas apiladas */
+    gap: 20px;
   }
   
   .lyrics-display,
   .analysis-controls {
     flex: none; 
-    width: 100%; /* Ocupan todo el ancho, esto es correcto */
-    position: static; /* Quitamos el sticky, correcto */
-    box-sizing: border-box; /* ¡IMPORTANTE! Asegura que el padding se incluya en el ancho total */
+    width: 100%; 
+    position: static;
+    box-sizing: border-box;
   }
   
-  /* 5. Solución para las Letras Cortadas */
   .lyrics-display {
-    padding: 15px; /* Menos padding en móvil */
-    max-height: 45vh; /* Altura máxima más controlada */
+    padding: 15px;
+    max-height: 45vh;
   }
 
   .lyrics-display h2 {
-    font-size: 1.3rem; /* Título "Letra de:" más pequeño */
+    font-size: 1.3rem;
   }
   
   .lyric-line {
-    font-size: 1rem; /* Letra más pequeña para que quepa más */
+    font-size: 1rem;
     line-height: 1.5;
     padding: 6px 8px;
   }
 
-  /* 6. Solución para el Panel de Análisis Demasiado Grande */
   .analysis-controls {
-    padding: 20px; /* Menos padding */
+    padding: 20px;
   }
 
   .analysis-controls h3 {
-    font-size: 1.3rem; /* Título "Analizador Interactivo" más pequeño */
+    font-size: 1.3rem;
   }
 
   .selected-snippet-card blockquote,
   .placeholder-text p,
   .chatbot-response p {
-    font-size: 0.9rem; /* Reducimos todo el texto secundario */
+    font-size: 0.9rem;
   }
   
   .analysis-controls button {
-    font-size: 1rem; /* Botón más pequeño */
+    font-size: 1rem;
     padding: 12px;
   }
+}
+
+.main-nav .nav-link {
+  color: #a0a0a0;
+  text-decoration: none;
+  margin-left: 25px;
+  font-size: 1rem;
+  transition: color 0.2s;
+  padding-bottom: 5px; 
+  border-bottom: 2px solid transparent;
+}
+
+.main-nav .nav-link:hover {
+  color: #fff;
+}
+
+.main-nav .nav-link.active-link {
+  color: #fff;
+  font-weight: bold;
+  border-bottom-color: #e50914;
 }

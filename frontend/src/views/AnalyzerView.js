@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import AlbumModal from '../components/AlbumModal';
 import '../App.css';
@@ -15,8 +15,8 @@ function AnalyzerView() {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [selectedLineIndices, setSelectedLineIndices] = useState([]);
   const [analyzedSnippet, setAnalyzedSnippet] = useState('');
+  const analysisSectionRef = useRef(null);
 
-  // --- EFECTOS Y MANEJADORES DE ESTADO ---
   useEffect(() => {
     axios.get(`${API_URL}/api/albums`)
       .then(response => {
@@ -41,6 +41,9 @@ function AnalyzerView() {
     setSelectedLyrics(song.lyrics);
     setSelectedLineIndices([]); 
     setAnalysisResponse('');
+    setTimeout(() => {
+      analysisSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, 100);
     setAnalyzedSnippet(''); 
   };
 
@@ -106,7 +109,7 @@ function AnalyzerView() {
       />
 
       {selectedLyrics && (
-        <div className="interactive-analysis-section">
+        <div className="interactive-analysis-section" ref={analysisSectionRef}>
           
           <div className="lyrics-display">
             <h2>Letra de: "{selectedSongTitle}"</h2>
