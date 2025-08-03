@@ -1,88 +1,223 @@
+/* src/components/AlbumModal.css */
+
+/* Añadimos una variable específica para el fondo de los paneles del modal */
+:root {
+  --panel-background: rgba(30, 30, 30, 0.75);
+}
+body.light-mode {
+  --panel-background: rgba(255, 255, 255, 0.75);
+}
+
 .modal-backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(5px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 2000;
-    animation: fadeInBackdrop 0.3s ease;
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Mantenemos este por el backdrop-filter */
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  animation: fadeInBackdrop 0.3s ease;
+}
   
+.modal-content {
+  width: 90%;
+  max-width: 800px;
+  max-height: 85vh;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px var(--shadow-color);
+  border: 1px solid var(--border-color);
+  animation: slideInModal 0.4s ease-out;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Pseudo-elemento para el fondo borroso */
+.modal-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background-image: var(--album-cover-url); 
+  background-size: cover;
+  background-position: center;
+  filter: blur(15px) brightness(0.4);
+  transform: scale(1.2);
+}
+  
+.close-modal-btn {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 2.5rem;
+  cursor: pointer;
+  transition: color 0.2s;
+  z-index: 10;
+}
+.close-modal-btn:hover {
+  color: var(--text-interactive);
+}
+
+/* Paneles */
+.modal-left-panel, .modal-right-panel {
+  background-color: var(--panel-background);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-left-panel {
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+/* Estilo específico para el borde en modo claro */
+body.light-mode .modal-left-panel {
+  border-right: 1px solid var(--border-color);
+}
+
+.modal-album-cover {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px var(--shadow-color);
+}
+
+.modal-right-panel {
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+/* Título y año del álbum */
+.modal-album-title {
+  color: var(--text-interactive);
+  font-size: 2rem;
+  margin: 0;
+  text-align: left;
+}
+.modal-album-year {
+  color: var(--text-secondary);
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+/* Botón de análisis de álbum */
+.analyze-album-btn {
+  width: 100%;
+  padding: 10px 15px;
+  margin-bottom: 20px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 1rem;
+  text-transform: uppercase;
+  color: var(--text-interactive);
+  background-color: transparent;
+  border: 2px solid var(--accent-color);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.analyze-album-btn:hover:not(:disabled) {
+  background-color: var(--accent-color);
+  color: #fff; /* Forzamos blanco para el hover del botón de acento */
+}
+.analyze-album-btn:disabled {
+  border-color: var(--text-secondary);
+  color: var(--text-secondary);
+  cursor: not-allowed;
+}
+
+/* Lista de canciones */
+.modal-song-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.modal-song-item {
+  padding: 12px 10px;
+  margin-right: 10px;
+  color: var(--text-primary);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Mantenemos este oscuro para contraste */
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+  text-align: left;
+}
+body.light-mode .modal-song-item {
+  border-bottom-color: var(--border-color);
+}
+.modal-song-item:hover {
+  background-color: var(--accent-color);
+  color: #fff; /* Forzamos blanco para el hover */
+}
+
+/* Contenedores de contenido dinámico */
+.modal-song-list, 
+.album-analysis-container, 
+.modal-loading {
+  flex-grow: 1;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.modal-loading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.album-analysis-container {
+  padding: 15px;
+  margin-top: 10px;
+  background-color: rgba(0, 0, 0, 0.2); /* Mantenemos un fondo oscuro sutil */
+  border-radius: 5px;
+}
+body.light-mode .album-analysis-container {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.album-analysis-container h4 {
+  color: var(--text-interactive);
+  margin-top: 0;
+}
+.album-analysis-container p {
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+/* Media Query para responsividad (sin cambios de color) */
+@media (max-width: 768px) {
   .modal-content {
-    width: 90%;
-    max-width: 500px;
-    max-height: 80vh;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    position: relative;
-    background-size: cover;
-    background-position: center;
-    border: 1px solid #444;
-    animation: slideInModal 0.4s ease-out;
-    display: flex;
     flex-direction: column;
+    max-height: 90vh;
   }
-  
-  .close-modal-btn {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    background: none;
-    border: none;
-    color: #a0a0a0;
-    font-size: 2.5rem;
-    cursor: pointer;
-    transition: color 0.2s;
-  }
-  .close-modal-btn:hover {
-    color: #fff;
-  }
-  
-  .modal-album-title {
-    color: #fff;
-    font-size: 2.2rem;
-    margin: 0;
-    text-align: center;
-  }
-  
-  .modal-album-year {
-    color: #a0a0a0;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .modal-song-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    overflow-y: auto;
-  }
-  
-  .modal-song-item {
-    padding: 12px 15px;
-    color: #e0e0e0;
+  .modal-left-panel {
+    padding: 20px;
+    border-right: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    cursor: pointer;
-    transition: background-color 0.2s;
   }
-  
-  .modal-song-item:hover {
-    background-color: rgba(229, 9, 20, 0.7);
-    color: #fff;
+  body.light-mode .modal-left-panel {
+    border-bottom-color: var(--border-color);
   }
-  
-  @keyframes fadeInBackdrop {
-    from { opacity: 0; }
-    to { opacity: 1; }
+  .modal-album-cover {
+    max-width: 200px;
   }
-  
-  @keyframes slideInModal {
-    from { transform: translateY(-30px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
+  .modal-right-panel {
+    padding: 20px;
   }
+}
+
+/* Animaciones */
+@keyframes fadeInBackdrop { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideInModal { from { transform: translateY(-30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
