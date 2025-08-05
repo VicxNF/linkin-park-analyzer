@@ -90,6 +90,10 @@ def analyze_album():
 
     if not album_title:
         return jsonify({"error": "No se proporcionó el título del álbum."}), 400
+    
+    if album_title in analysis_cache:
+        print(f"Respuesta para el álbum '{album_title}' encontrada en el caché.")
+        return jsonify({"albumAnalysis": analysis_cache[album_title]})
 
     # Buscar el álbum en nuestros datos
     album_found = next((album for album in lyrics_data if album["albumTitle"] == album_title), None)
