@@ -150,6 +150,40 @@ function AnalyzerView() {
       });
   };
 
+  const handleAnalyzeFullSong = () => {
+    if (!selectedLyrics || selectedLyrics === "Instrumental") return;
+  
+    const snippet = selectedLyrics;
+  
+    setIsAnalyzing(true);
+    setAnalysisResponse('');
+    
+    setAnalyzedSnippet(`(Análisis de la canción completa: "${selectedSongTitle}")`);
+    
+    setSelectedLineIndices([]);
+  
+    axios.post(`${API_URL}/api/analyze-snippet`, { snippet })
+      .then(response => {
+        setAnalysisResponse(response.data.analysis);
+        
+        const newHistoryEntry = {
+          id: Date.now(),
+          snippet: `(Canción Completa) ${selectedSongTitle}`,
+          analysis: response.data.analysis
+        };
+        const updatedHistory = [newHistoryEntry, ...history].slice(0, 5);
+        setHistory(updatedHistory);
+        localStorage.setItem('analysisHistory', JSON.stringify(updatedHistory));
+      })
+      .catch(error => {
+        console.error("Hubo un error al analizar la canción completa:", error);
+        setAnalysisResponse("Hubo un error al generar el análisis. Inténtalo de nuevo.");
+      })
+      .finally(() => {
+        setIsAnalyzing(false);
+      });
+  };
+
   return (
     <div className="analyzer-view-container">
       <h1>Analizador de Sentimientos de Linkin Park</h1>
@@ -220,13 +254,17 @@ function AnalyzerView() {
               <div className="selected-snippet-card">
                 <p><strong>Analizando {selectedLineIndices.length} línea(s):</strong></p>
                 <blockquote>
-                  {selectedLineIndices.sort((a, b) => a - b).map(index => selectedLyrics.split('\n')[index]).map((line, i) => <span key={i}>{line}<br/></span>)}
+                  {selectedLineIndices
+                    .sort((a, b) => a - b)
+                    .map(index => selectedLyrics.split('\n')[index])
+                    .map((line, i) => <span key={i}>{line}<br/></span>)
+                  }
                 </blockquote>
               </div>
             )}
-            {!selectedLineIndices.length > 0 && !analysisResponse && !isAnalyzing && (
+            {selectedLineIndices.length === 0 && (
               <div className="placeholder-text">
-                <p>Toca las líneas de la letra que quieras analizar.</p>
+                <p>Toca una o varias líneas para un análisis detallado, o...</p>
               </div>
             )}
             <button 
@@ -234,6 +272,16 @@ function AnalyzerView() {
               disabled={selectedLineIndices.length === 0 || isAnalyzing}
             >
               {isAnalyzing ? 'PENSANDO...' : 'Analizar Selección'}
+            </button>
+
+            <div className="or-divider">O</div>
+
+            <button 
+              className="full-song-analysis-btn"
+              onClick={handleAnalyzeFullSong} 
+              disabled={isAnalyzing}
+            >
+              Analizar Canción Completa
             </button>
             {isAnalyzing && (
               <div className="loading-container">

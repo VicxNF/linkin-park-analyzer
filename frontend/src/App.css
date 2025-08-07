@@ -42,7 +42,7 @@ body {
 
 body::before, body::after {
   content: '';
-  position: fixed; /* Fijo para que no se mueva con el scroll */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -50,7 +50,7 @@ body::before, body::after {
   z-index: -2; /* Detrás de todo */
   background-size: cover;
   background-position: center;
-  transition: opacity 0.5s ease-in-out; /* Animación de fundido */
+  transition: opacity 0.5s ease-in-out;
 }
 
 body::before {
@@ -82,10 +82,10 @@ body.light-mode .main-nav .nav-link.active-link {
 }
 
 body.light-mode::before {
-  opacity: 0; /* Ocultamos la capa oscura */
+  opacity: 0;
 }
 body.light-mode::after {
-  opacity: 1; /* Mostramos la capa clara */
+  opacity: 1;
 }
 
 .App {
@@ -144,7 +144,7 @@ h1 {
 
 .main-nav {
   display: flex;
-  gap: 25px; /* Espacio entre los links de navegación */
+  gap: 25px;
 }
 
 .main-nav a {
@@ -173,7 +173,6 @@ h1 {
   border-bottom-color: var(--accent-color);
 }
 
-/* --- TARJETAS DE ÁLBUMES --- */
 .albums-container {
   display: flex;
   flex-wrap: wrap;
@@ -213,13 +212,12 @@ h1 {
 }
 
 .album-card-title-overlay h3, .album-card-title-overlay p {
-  color: #fff; /* Forzamos blanco aquí para legibilidad sobre el gradiente */
+  color: #fff;
 }
 .album-card-title-overlay p {
   color: #a0a0a0;
 }
 
-/* --- SECCIÓN DE ANÁLISIS --- */
 .interactive-analysis-section {
   display: flex;
   gap: 30px;
@@ -311,7 +309,7 @@ h1 {
   font-family: 'Oswald', sans-serif;
   font-size: 1.2rem;
   text-transform: uppercase;
-  color: #fff; /* Forzamos blanco para el botón de acento */
+  color: #fff;
   background-color: var(--accent-color);
   border: none;
   border-radius: 5px;
@@ -437,13 +435,63 @@ h1 {
   font-size: 1.1rem;
 }
 
-/* Hacemos que el reproductor aquí dentro tenga un margen superior */
 .instrumental-track-info .song-player-container {
   margin-top: 30px;
-  margin-bottom: 0; /* Quitamos el margen inferior que tenía por defecto */
+  margin-bottom: 0;
 }
 
-/* --- REGLAS RESPONSIVAS --- */
+.full-song-analysis-btn {
+  width: 100%;
+  padding: 12px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 1rem;
+  text-transform: uppercase;
+  color: var(--text-interactive);
+  background-color: transparent;
+  border: 2px solid var(--accent-color);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.full-song-analysis-btn:hover:not(:disabled) {
+  background-color: var(--accent-color);
+  color: #fff;
+}
+
+.full-song-analysis-btn:disabled {
+  border-color: var(--text-secondary);
+  color: var(--text-secondary);
+  cursor: not-allowed;
+}
+
+.or-divider {
+  text-align: center;
+  color: var(--text-secondary);
+  margin: 15px 0;
+  font-family: 'Oswald', sans-serif;
+  position: relative;
+  width: 100%;
+}
+
+.or-divider::before,
+.or-divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 40%;
+  height: 1px;
+  background-color: var(--border-color);
+}
+
+.or-divider::before {
+  left: 0;
+}
+
+.or-divider::after {
+  right: 0;
+}
+
 @media (max-width: 900px) {
   .App { padding: 0 10px; }
   .analyzer-view-container h1, h1 { font-size: 1.8rem; margin-bottom: 5px; }

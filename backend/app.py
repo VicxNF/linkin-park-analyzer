@@ -6,16 +6,22 @@ from flask_cors import CORS
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from googleapiclient.discovery import build
 import google.generativeai as genai
+from dotenv import load_dotenv
 
+load_dotenv()
 analysis_cache = {}
 
-YOUTUBE_API_KEY = 'AIzaSyCMkXDBzPaXqYi2SOXWUJeM7tKMltjGKxU'
+YOUTUBE_API_KEY = os.environ.get('YOUTUBE_API_KEY')
+if not YOUTUBE_API_KEY:
+    raise ValueError("No se encontró la clave de API de Youtube.")
 youtube = build('youtube', 'v3', developerKey=YOUTUBE_API_KEY)
 
 app = Flask(__name__)
 CORS(app)
 
-GEMINI_API_KEY = "AIzaSyAi-K3g4Pr4z56G3D1m0AuCOx1C2ifay9U"
+GEMINI_API_KEY = os.environ.get('GEMINI_API_KEY')
+if not GEMINI_API_KEY:
+    raise ValueError("No se encontró la clave de API de Gemini. Asegúrate de que está en tu archivo .env")
 genai.configure(api_key=GEMINI_API_KEY)
 model = genai.GenerativeModel('gemini-1.5-flash')
 
