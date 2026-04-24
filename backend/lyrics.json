@@ -2,7 +2,7 @@
   {
     "albumTitle": "Hybrid Theory",
     "year": 2000,
-    "cover": "https://linkinpedia.com/www/w/images/c/c5/Studio-Hybrid_Theory_Cover.jpg",
+    "cover": "/covers/hybrid-theory.jpg",
     "songs": [
       {
         "title": "Papercut",
@@ -79,7 +79,7 @@
   {
     "albumTitle": "Meteora",
     "year": 2003,
-    "cover": "https://linkinpedia.com/www/w/images/9/9e/Meteora-Standard.jpg",
+    "cover": "/covers/meteora.jpg",
     "songs": [
       {
         "title": "Foreword",
@@ -151,7 +151,7 @@
   {
     "albumTitle": "Minutes to Midnight",
     "year": 2007,
-    "cover": "https://linkinpedia.com/www/w/images/7/79/Studio-Minutes_To_Midnight_clean.jpg",
+    "cover": "/covers/mtm.jpg",
     "songs": [
       {
         "title": "Wake",
@@ -228,7 +228,7 @@
   {
     "albumTitle": "A Thousand Suns",
     "year": 2010,
-    "cover": "https://linkinpedia.com/www/w/images/f/fd/Studio-A_Thousand_Suns_Cover_clean.jpg",
+    "cover": "/covers/ats.jpg",
     "songs": [
       {
         "title": "The Requiem",
@@ -315,7 +315,7 @@
   {
     "albumTitle": "LIVING THINGS",
     "year": 2012,
-    "cover": "https://linkinpedia.com/www/w/images/e/e0/Studio-Living_Things_Cover.jpg",
+    "cover": "/covers/living-things.jpg",
     "songs": [
       {
         "title": "LOST IN THE ECHO",
@@ -382,7 +382,7 @@
   {
     "albumTitle": "The Hunting Party",
     "year": 2014,
-    "cover": "https://linkinpedia.com/www/w/images/1/13/Studio-The_Hunting_Party_cover.jpg",
+    "cover": "/covers/thp.jpg",
     "songs": [
       {
         "title": "Keys to the Kingdom",
@@ -449,7 +449,7 @@
   {
     "albumTitle": "One More Light",
     "year": 2017,
-    "cover": "https://linkinpedia.com/www/w/images/f/f8/One_More_Light.jpg",
+    "cover": "/covers/oml.jpg",
     "songs": [
       {
         "title": "Nobody Can Save Me",
@@ -506,7 +506,7 @@
   {
     "albumTitle": "From Zero",
     "year": 2024,
-    "cover": "https://static.wikia.nocookie.net/linkinpark/images/8/8f/From_Zero_Deluxe.jpg",
+    "cover": "/covers/from-zero.jpg",
     "songs": [
       {
         "title": "From Zero (Intro)",

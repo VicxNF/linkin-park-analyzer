@@ -1,12 +1,15 @@
 import json
-import nltk
 import os
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from googleapiclient.discovery import build
 import google.generativeai as genai
+from google.generativeai.types import HarmCategory, HarmBlockThreshold
 from dotenv import load_dotenv
+
+import nltk
+nltk.download('vader_lexicon')
 
 load_dotenv()
 analysis_cache = {}
@@ -22,8 +25,26 @@ CORS(app)
 GEMINI_API_KEY = os.environ.get('GEMINI_API_KEY')
 if not GEMINI_API_KEY:
     raise ValueError("No se encontró la clave de API de Gemini. Asegúrate de que está en tu archivo .env")
-genai.configure(api_key=GEMINI_API_KEY)
-model = genai.GenerativeModel('gemini-1.5-flash')
+genai.configure(api_key=GEMINI_API_KEY, transport='rest')
+
+print("--- MODELOS DISPONIBLES PARA TU LLAVE ---")
+try:
+    for m in genai.list_models():
+        if 'generateContent' in m.supported_generation_methods:
+            print(f"ID: {m.name}")
+except Exception as e:
+    print(f"Error al listar modelos: {e}")
+print("-----------------------------------------")
+
+model = genai.GenerativeModel(
+    model_name='models/gemini-flash-latest', # Probamos de nuevo con Flash pero con nombre completo
+    safety_settings={
+        HarmCategory.HARM_CATEGORY_HARASSMENT: HarmBlockThreshold.BLOCK_NONE,
+        HarmCategory.HARM_CATEGORY_HATE_SPEECH: HarmBlockThreshold.BLOCK_NONE,
+        HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT: HarmBlockThreshold.BLOCK_NONE,
+        HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: HarmBlockThreshold.BLOCK_NONE,
+    }
+)
 
 def load_lyrics_data():
     with open('lyrics.json', 'r', encoding='utf-8') as f:
