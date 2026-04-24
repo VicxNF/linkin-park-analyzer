@@ -3,6 +3,7 @@
     "albumTitle": "Hybrid Theory",
     "year": 2000,
     "cover": "/covers/hybrid-theory.jpg",
+    "backCover": "/covers/hybrid-theory-back.png", 
     "songs": [
       {
         "title": "Papercut",

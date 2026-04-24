@@ -1,32 +1,37 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
-import lightBgImage from '../assets/linkinpark-claro.jpg';
 
 const ThemeContext = createContext();
 
 export const useTheme = () => useContext(ThemeContext);
 
 export const ThemeProvider = ({ children }) => {
+  // Iniciamos con 'dark' (que será nuestro From Zero) o lo que esté guardado
   const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'dark');
 
   useEffect(() => {
-    const img = new Image();
-    img.src = lightBgImage;
-  }, []);
-
-  useEffect(() => {
     const body = window.document.body;
-    body.classList.remove('light-mode', 'dark-mode');
-    body.classList.add(`${theme}-mode`);
+    // Limpiamos clases viejas
+    body.classList.remove('light-mode', 'dark-mode', 'theme-hybrid-theory');
+    
+    // Si el tema es 'hybrid-theory', añadimos su clase específica
+    // Si es 'dark' o 'light', mantenemos la compatibilidad inicial
+    if (theme === 'hybrid-theory') {
+      body.classList.add('theme-hybrid-theory');
+    } else {
+      body.classList.add(`${theme}-mode`);
+    }
+    
     localStorage.setItem('theme', theme);
   }, [theme]);
 
-  const toggleTheme = () => {
-    setTheme(prevTheme => (prevTheme === 'light' ? 'dark' : 'light'));
+  // Esta función ahora nos permitirá cambiar a una era específica
+  const selectTheme = (newTheme) => {
+    setTheme(newTheme);
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={{ theme, selectTheme }}>
       {children}
     </ThemeContext.Provider>
   );
-};  
+};

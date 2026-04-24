@@ -1,6 +1,5 @@
-/* src/components/AlbumModal.css */
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@600;700&display=swap');
 
-/* Añadimos una variable específica para el fondo de los paneles del modal */
 :root {
   --panel-background: rgba(30, 30, 30, 0.75);
 }
@@ -216,6 +215,171 @@ body.light-mode .album-analysis-container {
   .modal-right-panel {
     padding: 20px;
   }
+}
+
+/* src/components/AlbumModal.css */
+
+/* Contenedor tipo "Caja de CD" */
+.modal-case {
+  width: 90%;
+  max-width: 850px;
+  aspect-ratio: 1.2 / 1; /* Proporción de contraportada de CD */
+  background-image: var(--album-back-url);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  border-radius: 4px; /* Las cajas de CD son menos redondeadas */
+  box-shadow: 0 20px 50px rgba(0,0,0,0.8), inset 0 0 100px rgba(0,0,0,0.2);
+  display: flex;
+  overflow: hidden;
+  animation: slideInModal 0.4s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+}
+
+/* Brillo de plástico de CD */
+.modal-case::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,0.05) 100%);
+  pointer-events: none;
+}
+
+.cd-back-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  box-sizing: border-box;
+  z-index: 2;
+}
+
+/* === AJUSTE QUIRÚRGICO: TRACKLIST DENTRO DEL RECUADRO === */
+
+.hybrid-theory-theme {
+  /* Usamos Archivo Narrow para ese look alto y apretado de los 2000 */
+  font-family: 'Archivo Narrow', sans-serif;
+  color: #1a1a1a;
+  -webkit-font-smoothing: antialiased;
+}
+
+.hybrid-theory-theme .back-main-scrollable {
+  position: absolute;
+  /* Ajusta estos valores según lo que viste en el inspector */
+  top: 13.7%;    
+  left: -1.9%; 
+  width: 31%;  
+  height: 52%; 
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Quitamos el scroll para que se vea más real */
+  font-family: 'Archivo Narrow', sans-serif;
+  text-align: left;
+}
+
+.hybrid-theory-theme .back-main-scrollable::-webkit-scrollbar { width: 0px; }
+
+.hybrid-theory-theme .back-track-item {
+  font-weight: 700;
+  font-size: 1.27rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  
+  /* ESTO PEGA LAS CANCIONES ENTRE SÍ */
+  line-height: 0.85;     /* Interlineado muy bajo */
+  margin-bottom: 3px;    /* Espacio mínimo entre líneas */
+  padding: 0 !important; /* Quitamos cualquier padding heredado */
+  
+  /* ESTO ELIMINA EL RECTÁNGULO */
+  background: transparent !important; 
+  border: none !important;
+  box-shadow: none !important;
+  transition: transform 0.1s ease;
+}
+
+.hybrid-theory-theme .back-track-item:hover {
+  /* Al pasar el mouse, solo cambiamos el color y movemos un poco el texto */
+  /* NO añadimos fondos ni sombras */
+  color: #a31d1d; 
+  transform: translateX(4px);
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.hybrid-theory-theme .track-index {
+  margin-right: 8px;
+  min-width: 22px;
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+.hybrid-theory-theme .track-name {
+  font-weight: 700;
+  white-space: nowrap; /* Evita que el texto salte de línea si es largo */
+}
+
+/* El botón de Análisis lo movemos para que no flote en el medio */
+.hybrid-theory-theme .back-analyze-btn {
+  position: absolute;
+  top: 72%;
+  left: 10.5%;
+  background: #1a1a1a;
+  color: #fff;
+  border: none;
+  padding: 4px 10px;
+  font-family: 'Archivo Narrow', sans-serif;
+  font-weight: 700;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+}
+
+/* Ajuste del título para que no aparezca arriba en medio del arte */
+.hybrid-theory-theme .back-album-title {
+  display: none; 
+}
+
+/* Elementos de realismo */
+.back-legal-area {
+  position: absolute;
+  bottom: 20px;
+  left: 40px;
+  font-size: 0.6rem;
+  max-width: 300px;
+  opacity: 0.8;
+}
+
+.fake-barcode {
+  width: 120px;
+  height: 40px;
+  background: white;
+  border: 1px solid #ddd;
+  margin-bottom: 5px;
+  background-image: repeating-linear-gradient(90deg, #000, #000 2px, #fff 2px, #fff 4px);
+}
+
+/* Área de Análisis (cuando la IA responde) */
+.back-analysis-text {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border: 2px solid #000;
+  color: #333;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* Ajustes para Scroll */
+.back-main-scrollable::-webkit-scrollbar { width: 4px; }
+.back-main-scrollable::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); }
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .modal-case { aspect-ratio: auto; height: 90vh; }
+  .hybrid-theory-theme .back-main-scrollable { width: 100%; }
 }
 
 /* Animaciones */

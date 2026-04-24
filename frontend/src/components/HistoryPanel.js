@@ -16,6 +16,14 @@ const HistoryPanel = ({ isVisible, history, onClose }) => {
         ) : (
           history.map(item => (
             <div key={item.id} className="history-item">
+              {/* Mostramos el título de la canción si existe (para análisis de fragmentos) */}
+              {item.songTitle && (
+                <div className="history-item-header">
+                  <span className="history-song-label">CANCIÓN:</span>
+                  <span className="history-song-name">{item.songTitle}</span>
+                </div>
+              )}
+              
               <blockquote className="history-snippet">{item.snippet}</blockquote>
               <p className="history-analysis">{item.analysis}</p>
             </div>

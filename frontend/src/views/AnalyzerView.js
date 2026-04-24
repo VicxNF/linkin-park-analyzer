@@ -108,6 +108,7 @@ function AnalyzerView() {
 
         const newHistoryEntry = {
           id: Date.now(),
+          songTitle: selectedSongTitle,
           snippet: snippet,
           analysis: response.data.analysis
         };

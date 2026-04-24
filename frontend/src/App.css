@@ -1,4 +1,5 @@
 :root {
+  /* VARIABLES POR DEFECTO (From Zero / Modo Oscuro) */
   --background-primary: #121212;
   --background-secondary: #1e1e1e;
   --background-tertiary: #2c2c2c;
@@ -6,12 +7,16 @@
   --text-primary: #e0e0e0;
   --text-secondary: #a0a0a0;
   --text-interactive: #ffffff;
-  --accent-color: #e50914;
-  --accent-color-hover: #f40612;
+  --accent-color: #bb2649; /* Rosa/Morado From Zero */
+  --accent-color-hover: #e91e63;
   --success-color: #00c853;
   --border-color: #444;
   --background-overlay-dark: rgba(18, 18, 18, 0.85);
   --shadow-color: rgba(0, 0, 0, 0.5);
+  --font-main: 'Roboto', sans-serif;
+  
+  /* IMAGEN POR DEFECTO */
+  --bg-image: url('./assets/linkinpark.jpg');
 }
 
 body.light-mode {
@@ -30,14 +35,268 @@ body.light-mode {
   --shadow-color: rgba(0, 0, 0, 0.15);
 }
 
+/* --- TEMA: HYBRID THEORY (Versión Inmersiva) --- */
+body.theme-hybrid-theory {
+  /* Colores base: Invertimos el esquema. Fondo claro (papel), Texto oscuro (tinta) */
+  --background-primary: #d2cfc4;     /* El color crema/beige de la portada */
+  --background-secondary: rgba(255, 255, 255, 0.4); /* Paneles casi invisibles */
+  --background-tertiary: rgba(0, 0, 0, 0.1);
+  --background-overlay-dark: rgba(210, 207, 196, 0.3); /* Overlay CLARO para no tapar el arte */
+
+  --text-primary: #1a1a1a;           /* Texto casi negro (como tinta) */
+  --text-secondary: #4a4a4a;
+  --text-interactive: #000000;
+  
+  --accent-color: #8b0000;           /* Rojo sangre oscuro */
+  --accent-color-hover: #5a0000;
+  
+  --border-color: rgba(0, 0, 0, 0.2);
+  --shadow-color: rgba(0, 0, 0, 0.2);
+  
+  --font-main: 'Archivo Narrow', sans-serif;
+  --bg-image: url('assets/covers/hybrid-theory-fondo.png');
+}
+
+body.theme-hybrid-theory::before {
+  background-image: linear-gradient(var(--background-overlay-dark), var(--background-overlay-dark)), url('assets/covers/hybrid-theory-fondo.png');
+  opacity: 1;
+  
+  /* AJUSTE DE POSICIÓN: */
+  /* El primer valor es horizontal (center), el segundo es vertical (0% es arriba del todo) */
+  background-position: center 80%; 
+  background-size: cover;
+  filter: sepia(20%) contrast(120%) brightness(90%);
+}
+
+body.theme-hybrid-theory .main-header {
+  background-color: rgba(210, 207, 196, 0.9);
+  border-bottom: 2px solid var(--accent-color);
+  backdrop-filter: blur(5px);
+}
+
+body.theme-hybrid-theory .main-nav a,
+body.theme-hybrid-theory .logo-link {
+  color: #1a1a1a;
+}
+
+body.theme-hybrid-theory .main-nav .nav-link.active-link {
+  color: var(--accent-color);
+  border-bottom-color: var(--accent-color);
+}
+
+body.theme-hybrid-theory .lyrics-display, 
+body.theme-hybrid-theory .analysis-controls,
+body.theme-hybrid-theory .chatbot-response,
+body.theme-hybrid-theory .selected-snippet-card {
+  background-color: rgba(255, 255, 255, 0.5); /* Papel semitransparente */
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.05);
+  color: #1a1a1a;
+}
+
+body.theme-hybrid-theory .lyric-line {
+  color: #333;
+}
+body.theme-hybrid-theory .lyric-line:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* El botón principal en rojo brillante */
+body.theme-hybrid-theory .analysis-controls button {
+  background-color: var(--accent-color);
+  color: #fff;
+  border-radius: 0; /* Estilo más industrial/cuadrado */
+}
+
+/* Título principal de la página */
+body.theme-hybrid-theory h1 {
+  color: var(--accent-color);
+  text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+}
+
+/* Nombres de las canciones en la lista */
+body.theme-hybrid-theory .lyric-line.selected-line {
+  background-color: var(--accent-color);
+  color: #fff;
+}
+
+/* Títulos de los paneles (Letra de:, Analizador, etc) */
+body.theme-hybrid-theory h2, 
+body.theme-hybrid-theory h3,
+body.theme-hybrid-theory .logo-link {
+  color: var(--accent-color);
+}
+
+/* El botón de Análisis General del Álbum en el modal */
+body.theme-hybrid-theory .back-analyze-btn {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+body.theme-hybrid-theory .subtitle {
+  color: #000000 !important;
+  font-weight: 700;
+  opacity: 1;
+  /* Un sutil brillo blanco detrás para separarlo de la textura del fondo */
+  text-shadow: 0px 1px 2px rgba(255, 255, 255, 0.5); 
+}
+
+body.theme-hybrid-theory .history-toggle-btn {
+  background-color: #000000 !important; /* Negro puro para máximo contraste */
+  color: #e6e3d8 !important;            /* Blanco hueso brillante */
+  border: 2px solid #000;
+  border-radius: 0;                     /* Cuadrado industrial */
+  padding: 10px 25px;                   /* Más espacio interno */
+  font-family: 'Archivo Narrow', sans-serif;
+  font-weight: 800;                     /* Más grosor */
+  font-size: 1rem;                      /* Tamaño legible */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 4px 4px 0px var(--accent-color); /* Sombra roja sólida */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.2s ease;
+}
+
+body.theme-hybrid-theory .history-toggle-btn:hover {
+  background-color: var(--accent-color) !important;
+  color: #ffffff !important;
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #000;
+}
+
+/* Forzar que el icono se vea */
+body.theme-hybrid-theory .history-toggle-btn svg {
+  fill: #e6e3d8 !important;
+  width: 20px;
+  height: 20px;
+}
+
+body.theme-hybrid-theory .history-toggle-btn:hover svg {
+  fill: #ffffff !important;
+}
+
+/* El botón de "Analizador Interactivo" en el Header */
+body.theme-hybrid-theory .main-nav .nav-link.active-link {
+    background-color: var(--accent-color);
+    color: #fff !important;
+    padding: 5px 15px;
+    border-radius: 2px;
+}
+
+body.theme-hybrid-theory .history-panel {
+  background-color: #d2cfc4 !important; /* El color crema sólido del papel */
+  background-image: radial-gradient(#bcbaae 0.5px, transparent 0.5px); /* Sutil textura de puntos técnicos */
+  background-size: 10px 10px;
+  border-left: 5px solid #000; /* Borde negro grueso e industrial */
+  box-shadow: -10px 0px 30px rgba(0,0,0,0.5);
+  color: #1a1a1a;
+}
+
+/* Encabezado del Historial */
+body.theme-hybrid-theory .history-panel h2 {
+  background-color: #000; /* Fondo negro para el título */
+  color: var(--accent-color) !important; /* Texto en rojo sangre */
+  padding: 15px;
+  margin: 0;
+  text-transform: uppercase;
+  font-family: 'Archivo Narrow', sans-serif;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+/* Cada tarjeta de análisis dentro del historial */
+body.theme-hybrid-theory .history-item {
+  background-color: rgba(255, 255, 255, 0.3) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: 0; /* Quitamos redondeado */
+  position: relative;
+}
+
+body.theme-hybrid-theory .history-item-header {
+  margin-bottom: 8px;
+  display: flex;
+  gap: 5px;
+  align-items: baseline;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  padding-bottom: 3px;
+}
+
+body.theme-hybrid-theory .history-song-label {
+  font-size: 0.6rem;
+  font-weight: 400;
+  color: #555;
+}
+
+body.theme-hybrid-theory .history-song-name {
+  font-family: 'Archivo Narrow', sans-serif;
+  font-weight: 900;
+  font-size: 0.85rem;
+  color: var(--accent-color); /* Rojo Hybrid Theory */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+body.theme-hybrid-theory .history-snippet {
+  margin-top: 5px;
+  font-size: 0.8rem !important;
+  opacity: 0.7;
+}
+
+/* El texto de la letra analizada en el historial */
+body.theme-hybrid-theory .history-item blockquote {
+  border-left: 3px solid var(--accent-color);
+  color: #4a4a4a;
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+/* El texto del análisis de la IA */
+body.theme-hybrid-theory .history-item p {
+  color: #1a1a1a;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+body.theme-hybrid-theory .history-song-title {
+  display: block;
+  font-family: 'Archivo Narrow', sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--accent-color); /* Rojo para que resalte el nombre de la canción */
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 2px;
+}
+
+/* Ajuste para que la letra analizada se vea un poco más pequeña que el título */
+body.theme-hybrid-theory .history-snippet {
+  font-size: 0.8rem !important;
+  margin-top: 5px;
+  opacity: 0.8;
+}
+
+/* Botón de cerrar del historial */
+body.theme-hybrid-theory .close-history-btn {
+  color: var(--accent-color) !important;
+  font-size: 2rem;
+}
+
+
 body {
   background-color: var(--background-primary);
   color: var(--text-primary);
-  font-family: 'Roboto', sans-serif;
+  font-family: var(--font-main);
   margin: 0;
   padding: 0;
   position: relative;
   transition: background-color 0.3s ease, color 0.3s ease;
+  min-height: 100vh;
 }
 
 body::before, body::after {
@@ -54,9 +313,22 @@ body::before, body::after {
 }
 
 body::before {
-  background-image: linear-gradient(var(--background-overlay-dark), var(--background-overlay-dark)), url('./assets/linkinpark.jpg');
-  opacity: 1;
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  background-size: cover;
+  background-position: center;
+  /* Transición suave para el cambio de imagen */
+  transition: background-image 0.5s ease-in-out, opacity 0.5s ease;
+  
+  /* Aplicamos el degradado y la variable de imagen */
+  background-image: linear-gradient(var(--background-overlay-dark), var(--background-overlay-dark)), var(--bg-image);
 }
+
 
 body::after {
   background-image: linear-gradient(var(--background-overlay-light), var(--background-overlay-light)), url('./assets/linkinpark-claro.jpg');
@@ -205,17 +477,34 @@ h1 {
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 15px;
+  padding: 20px 15px; /* Un poco más de aire */
   text-align: center;
-  color: var(--text-interactive);
-  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+  /* Degradado potente: negro sólido abajo que se desvanece hacia arriba */
+  background: linear-gradient(to top, 
+    rgba(0, 0, 0, 0.95) 0%, 
+    rgba(0, 0, 0, 0.7) 50%, 
+    transparent 100%
+  );
+  z-index: 2;
 }
 
-.album-card-title-overlay h3, .album-card-title-overlay p {
-  color: #fff;
+.album-card-title-overlay h3 {
+  color: #ffffff !important; /* Siempre blanco para máxima legibilidad */
+  margin: 0 0 5px 0;
+  font-size: 1.1rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  /* Esta sombra protege el texto si la portada es blanca (como MTM) */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); 
 }
+
 .album-card-title-overlay p {
-  color: #a0a0a0;
+  color: #cccccc !important; /* Gris claro/Blanco mate */
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
 }
 
 .interactive-analysis-section {
