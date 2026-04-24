@@ -11,6 +11,7 @@ const MusicHub = () => {
     <div className="music-hub-container">
       <div className="video-panel">
         <iframe
+          title="Reproductor de videos Linkin Park" 
           width="100%"
           height="100%"
           src={`https://www.youtube.com/embed/${videoId}`}
@@ -22,6 +23,7 @@ const MusicHub = () => {
       </div>
       <div className="playlist-panel">
         <iframe
+          title="Reproductor de música Linkin Park" 
           style={{ borderRadius: '12px' }}
           src={`https://open.spotify.com/embed/playlist/${playlistId}?utm_source=generator&theme=0`}
           width="100%"
