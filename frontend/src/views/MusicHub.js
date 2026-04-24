@@ -11,11 +11,10 @@ const MusicHub = () => {
     <div className="music-hub-container">
       <div className="video-panel">
         <iframe
-          title="Reproductor de videos Linkin Park" 
+          title="YouTube video player" 
           width="100%"
           height="100%"
           src={`https://www.youtube.com/embed/${videoId}`}
-          title="YouTube video player"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
