@@ -81,6 +81,7 @@
     "albumTitle": "Meteora",
     "year": 2003,
     "cover": "/covers/meteora.jpg",
+    "backCover": "/covers/meteora-back.png", 
     "songs": [
       {
         "title": "Foreword",

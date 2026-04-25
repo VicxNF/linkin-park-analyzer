@@ -343,6 +343,103 @@ body.light-mode .album-analysis-container {
   display: none; 
 }
 
+/* === ESTILO QUIRÚRGICO: METEORA TRACKLIST === */
+
+.meteora-theme {
+  /* Fuente Ultra Condensed que definimos antes */
+  font-family: 'Saira Extra Condensed', sans-serif;
+  color: #e6e0d4; /* Crema suave */
+}
+
+/* Ocultamos elementos que ensucien el arte original */
+.meteora-theme .back-album-title {
+  display: none; 
+}
+
+/* Contenedor del tracklist posicionado a la izquierda */
+.meteora-theme .back-main-scrollable {
+  position: absolute;
+  /* Subimos un poco el inicio (estaba en 56%) para ganar aire */
+  top: 56%;    
+  left: 3%;    
+  width: 42%;  
+  height: 40%; 
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; 
+  text-align: left;
+  font-family: 'Saira Extra Condensed', sans-serif;
+}
+
+.meteora-theme .back-main-scrollable::-webkit-scrollbar {
+  display: none;
+}
+
+/* Estilo de cada canción (Ultra Thin Look) */
+.meteora-theme .back-track-item {
+  font-weight: 700; 
+  /* Bajamos el tamaño (estaba en 1.05rem) para que sea más estilizado y quepa todo */
+  font-size: 1.06rem; 
+  text-transform: uppercase;
+  letter-spacing: 1.5px; 
+  
+  /* Mantenemos el interlineado apretado */
+  line-height: 1;
+  margin-bottom: 4px; 
+  
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: #e6e0d4; /* Color crema original */
+  background: transparent !important;
+  transition: transform 0.1s ease;
+}
+
+/* Efecto hover: Dorado Meteora */
+.meteora-theme .back-track-item:hover {
+  color: var(--accent-color);
+  transform: translateX(4px);
+}
+
+.meteora-theme .track-index {
+  min-width: 32px; 
+  font-size: inherit; /* Hereda el 0.92rem de la canción */
+  font-weight: inherit; /* Hereda el Bold */
+  opacity: 1; /* Quitamos la transparencia */
+  display: inline-block;
+}
+
+.meteora-theme .track-name {
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* Botón de Análisis: Lo ponemos como si fuera parte de los logos técnicos */
+.meteora-theme .back-analyze-btn {
+  position: absolute;
+  bottom: 7%;
+  right: 22%; 
+  background: #d4af37; /* Fondo dorado sólido */
+  color: #000;         /* Texto negro para contraste */
+  border: none;
+  padding: 3px 10px;
+  font-family: 'Saira Extra Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+/* Ajuste para el cuadro de análisis de IA */
+.meteora-theme .back-analysis-text {
+  background: rgba(15, 13, 11, 0.95);
+  border: 1px solid var(--accent-color);
+  color: #e6e0d4;
+  padding: 15px;
+  font-size: 0.9rem;
+}
+
 /* Elementos de realismo */
 .back-legal-area {
   position: absolute;

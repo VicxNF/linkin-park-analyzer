@@ -28,7 +28,7 @@ const AlbumModal = ({ album, onClose, onSongClick, onAnalyzeAlbum, albumAnalysis
           <div className="album-header-area">
             <h2 className="back-album-title">{album.albumTitle}</h2>
             <button 
-              className="back-analyze-btn" 
+              className={`back-analyze-btn album-btn-${albumSlug}`} // <--- Clase dinámica por álbum
               onClick={() => onAnalyzeAlbum(album.albumTitle)}
               disabled={isAnalyzingAlbum}
             >

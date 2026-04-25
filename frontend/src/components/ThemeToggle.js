@@ -3,19 +3,18 @@ import { useTheme } from '../context/ThemeContext';
 import './ThemeToggle.css';
 
 const ThemeToggle = () => {
-    // CAMBIO AQUÍ: Usamos 'selectTheme' que es como lo definiste en el Context
-    const { theme, selectTheme } = useTheme(); 
+    const { theme, selectTheme } = useTheme();
   
+    // Solo Hybrid Theory y Meteora
     const eras = [
-      { id: 'dark', name: 'FROM ZERO', icon: '🌌' },
-      { id: 'hybrid-theory', name: 'HYBRID THEORY', icon: '👤' }
+      { id: 'hybrid-theory', name: 'HYBRID THEORY', icon: '👤' },
+      { id: 'meteora', name: 'METEORA', icon: '🎨' }
     ];
 
     const handleNextEra = () => {
       const currentIndex = eras.findIndex(e => e.id === theme);
       const nextIndex = (currentIndex + 1) % eras.length;
-      // CAMBIO AQUÍ: Llamamos a 'selectTheme'
-      selectTheme(eras[nextIndex].id); 
+      selectTheme(eras[nextIndex].id);
     };
 
     const currentEra = eras.find(e => e.id === theme) || eras[0];
@@ -31,5 +30,5 @@ const ThemeToggle = () => {
       </div>
     );
 };
-  
+
 export default ThemeToggle;

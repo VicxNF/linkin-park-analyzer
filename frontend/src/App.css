@@ -1,22 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Saira+Extra+Condensed:wght@200;300;500;700&display=swap');
+
 :root {
-  /* VARIABLES POR DEFECTO (From Zero / Modo Oscuro) */
-  --background-primary: #121212;
-  --background-secondary: #1e1e1e;
-  --background-tertiary: #2c2c2c;
-  --background-overlay: rgba(18, 18, 18, 0.85);
-  --text-primary: #e0e0e0;
-  --text-secondary: #a0a0a0;
-  --text-interactive: #ffffff;
-  --accent-color: #bb2649; /* Rosa/Morado From Zero */
-  --accent-color-hover: #e91e63;
-  --success-color: #00c853;
-  --border-color: #444;
-  --background-overlay-dark: rgba(18, 18, 18, 0.85);
-  --shadow-color: rgba(0, 0, 0, 0.5);
-  --font-main: 'Roboto', sans-serif;
-  
-  /* IMAGEN POR DEFECTO */
-  --bg-image: url('./assets/linkinpark.jpg');
+  --background-primary: #d2cfc4;
+  --background-secondary: rgba(255, 255, 255, 0.4);
+  --background-tertiary: rgba(0, 0, 0, 0.1);
+  --background-overlay-dark: rgba(210, 207, 196, 0.3);
+  --text-primary: #1a1a1a;
+  --text-secondary: #4a4a4a;
+  --text-interactive: #000000;
+  --accent-color: #8b0000;
+  --accent-color-hover: #5a0000;
+  --border-color: rgba(0, 0, 0, 0.2);
+  --shadow-color: rgba(0, 0, 0, 0.2);
+  --font-main: 'Archivo Narrow', sans-serif;
+  --bg-image: url('assets/covers/hybrid-theory-fondo.png');
 }
 
 body.light-mode {
@@ -55,6 +52,18 @@ body.theme-hybrid-theory {
   
   --font-main: 'Archivo Narrow', sans-serif;
   --bg-image: url('assets/covers/hybrid-theory-fondo.png');
+}
+
+.hybrid-theory-theme .back-track-item {
+  color: #1a1a1a; /* Color tinta original */
+  transition: all 0.2s ease;
+}
+
+.hybrid-theory-theme .back-track-item:hover {
+  /* SIEMPRE ROJO en este disco, sin importar el tema global */
+  color: #8b0000 !important; 
+  transform: translateX(4px);
+  background: transparent !important;
 }
 
 body.theme-hybrid-theory::before {
@@ -128,9 +137,33 @@ body.theme-hybrid-theory .logo-link {
 }
 
 /* El botón de Análisis General del Álbum en el modal */
-body.theme-hybrid-theory .back-analyze-btn {
-  background-color: var(--accent-color);
-  color: white;
+.back-analyze-btn.album-btn-hybrid-theory {
+  position: absolute;
+  /* Volvemos a colocarlo en su sitio exacto del arte */
+  top: 72%;
+  left: 10.5%;
+  
+  background-color: #8b0000 !important; /* Rojo Sangre */
+  color: #ffffff !important;
+  font-family: 'Archivo Narrow', sans-serif;
+  font-weight: 700;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  
+  padding: 5px 12px;
+  border: none;
+  border-radius: 0; /* Cuadrado industrial */
+  box-shadow: 3px 3px 0px #000;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s ease;
+}
+
+.back-analyze-btn.album-btn-hybrid-theory:hover {
+  background-color: #000 !important;
+  box-shadow: 3px 3px 0px #8b0000;
+  transform: translate(-2px, -2px);
 }
 
 body.theme-hybrid-theory .subtitle {
@@ -285,6 +318,151 @@ body.theme-hybrid-theory .history-snippet {
 body.theme-hybrid-theory .close-history-btn {
   color: var(--accent-color) !important;
   font-size: 2rem;
+}
+
+/* --- TEMA: METEORA (ESTÉTICA URBANA/SEPIA) --- */
+body.theme-meteora {
+  /* Fondo casi negro pero con un matiz marrón cálido */
+  --background-primary: #0f0d0b; 
+  --background-secondary: rgba(30, 25, 20, 0.85); 
+  --background-tertiary: rgba(191, 162, 122, 0.15);
+  --background-overlay-dark: rgba(15, 13, 11, 0.5); 
+
+  --text-primary: #e6e0d4; /* Blanco hueso/crema */
+  --text-secondary: #bfa27a; /* El color ocre del disco */
+  --text-interactive: #ffffff;
+  
+  --accent-color: #d4af37; /* El Dorado/Bronce de Meteora */
+  --accent-color-hover: #f0c644;
+  
+  --border-color: rgba(191, 162, 122, 0.4);
+  --shadow-color: rgba(0, 0, 0, 0.9);
+  
+  /* FUENTE UNIVERS EQUIVALENT */
+  --font-main: 'Saira Extra Condensed', sans-serif;
+  --bg-image: url('assets/covers/meteora-fondo.jpg');
+}
+
+/* Fondo dinámico para Meteora */
+body.theme-meteora::before {
+  background-image: linear-gradient(var(--background-overlay-dark), var(--background-overlay-dark)), var(--bg-image);
+  opacity: 1;
+  background-position: center 25%; /* Ajustado para que se vea bien el artista del spray */
+  
+  /* FILTRO ESTILO METEORA: Sepia, alto contraste y un poco de grano */
+  filter: sepia(45%) contrast(125%) brightness(85%) saturate(80%);
+}
+
+/* --- OVERRIDES ESPECÍFICOS PARA METEORA --- */
+
+body.theme-meteora h1 {
+  font-family: 'Saira Extra Condensed', sans-serif;
+  font-weight: 200; /* Thin */
+  font-size: 3.5rem;
+  letter-spacing: 4px; /* Espaciado ancho como en el logo */
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 4px 4px 0px rgba(191, 162, 122, 0.3);
+}
+
+body.theme-meteora h2, 
+body.theme-meteora h3 {
+  font-family: 'Saira Extra Condensed', sans-serif;
+  font-weight: 300;
+  letter-spacing: 2px;
+  color: var(--accent-color);
+}
+
+body.theme-meteora .subtitle {
+  font-family: 'Saira Extra Condensed', sans-serif;
+  font-weight: 500;
+  font-size: 1.2rem;
+  color: var(--text-secondary) !important;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+body.theme-meteora .logo-link {
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 3px 3px 0px rgba(191, 162, 122, 0.5); /* Sombra ocre sólida */
+}
+
+/* El Header en Meteora debe ser muy oscuro y sólido */
+body.theme-meteora .main-header {
+  background-color: rgba(15, 13, 11, 0.95);
+  border-bottom: 3px solid var(--accent-color);
+}
+
+/* Los paneles (Letras y Analizador) */
+body.theme-meteora .lyrics-display, 
+body.theme-meteora .analysis-controls {
+  border: 1px solid var(--accent-color);
+  background-color: rgba(15, 13, 11, 0.9);
+  /* Sombra sólida desplazada (estética stencil) */
+  box-shadow: 8px 8px 0px rgba(212, 175, 55, 0.1); 
+}
+
+body.theme-meteora .history-toggle-btn {
+  background-color: transparent !important;
+  color: var(--accent-color) !important;
+  border: 2px solid var(--accent-color);
+  border-radius: 0;
+  font-family: 'Saira Extra Condensed', sans-serif;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+body.theme-meteora .history-toggle-btn:hover {
+  background-color: var(--accent-color) !important;
+  color: #000 !important;
+}
+
+/* Panel de Historial (Era Meteora) */
+body.theme-meteora .history-panel {
+  background-color: #1a1714 !important;
+  border-left: 4px solid var(--accent-color);
+}
+
+.back-analyze-btn.album-btn-meteora {
+  position: absolute;
+  /* Lo devolvemos a la zona de logos técnicos abajo a la derecha */
+  bottom: 7%;
+  right: 22%;
+  
+  background-color: #d4af37 !important; /* Dorado Meteora */
+  color: #000000 !important;             /* Texto Negro */
+  font-family: 'Saira Extra Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  
+  padding: 4px 15px;
+  border: none;
+  border-radius: 2px;
+  box-shadow: 4px 4px 0px rgba(0,0,0,0.3);
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s ease;
+}
+
+.back-analyze-btn.album-btn-meteora:hover {
+  background-color: #f0c644 !important;
+  transform: scale(1.05);
+}
+
+.meteora-theme .back-track-item {
+  color: #e6e0d4; /* Color crema original */
+  transition: all 0.2s ease;
+}
+
+.meteora-theme .back-track-item:hover {
+  /* SIEMPRE DORADO en este disco, sin importar el tema global */
+  color: #d4af37 !important; 
+  transform: translateX(4px);
+  background: transparent !important;
 }
 
 
