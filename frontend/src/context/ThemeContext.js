@@ -14,7 +14,8 @@ export const ThemeProvider = ({ children }) => {
     // Solo mantenemos estos dos temas por ahora
     const allThemeClasses = [
       'theme-hybrid-theory', 
-      'theme-meteora'
+      'theme-meteora',
+      'theme-minutes-to-midnight'
     ];
 
     body.classList.remove(...allThemeClasses, 'light-mode', 'dark-mode');

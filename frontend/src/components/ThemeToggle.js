@@ -7,8 +7,9 @@ const ThemeToggle = () => {
   
     // Solo Hybrid Theory y Meteora
     const eras = [
-      { id: 'hybrid-theory', name: 'HYBRID THEORY', icon: '👤' },
-      { id: 'meteora', name: 'METEORA', icon: '🎨' }
+      { id: 'hybrid-theory', name: 'HYBRID THEORY', cdImg: '/cds/hybrid-theory-cd.jpg' },
+      { id: 'meteora', name: 'METEORA', cdImg: '/cds/meteora-cd.jpg' }, // Placeholder
+      { id: 'minutes-to-midnight', name: 'MINUTES TO MIDNIGHT', cdImg: '/cds/mtm-cd.png' } // Placeholder
     ];
 
     const handleNextEra = () => {
@@ -20,13 +21,16 @@ const ThemeToggle = () => {
     const currentEra = eras.find(e => e.id === theme) || eras[0];
   
     return (
-      <div className="era-selector-wrapper">
-        <span className="era-name-label">{currentEra.name}</span>
-        <button onClick={handleNextEra} className={`theme-toggle-btn era-${theme}`} aria-label="Cambiar Era">
-          <div className="toggle-knob">
-            {currentEra.icon}
+      <div className="cd-selector-container" onClick={handleNextEra}>
+        <div className="cd-player-base">
+          <div className={`cd-disc ${theme}-active`}>
+            <img src={currentEra.cdImg} alt="Disco Linkin Park" className="cd-img" />
+            {/* El agujero central del CD */}
+            <div className="cd-center-hole"></div>
+            {/* Reflejo de luz para que parezca plástico */}
+            <div className="cd-shine"></div>
           </div>
-        </button>
+        </div>
       </div>
     );
 };

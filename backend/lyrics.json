@@ -154,6 +154,7 @@
     "albumTitle": "Minutes to Midnight",
     "year": 2007,
     "cover": "/covers/mtm.jpg",
+    "backCover": "/covers/mtm-back.jpg",
     "songs": [
       {
         "title": "Wake",

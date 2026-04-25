@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Saira+Extra+Condensed:wght@200;300;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600&display=swap');
 
 :root {
   --background-primary: #d2cfc4;
@@ -463,6 +465,157 @@ body.theme-meteora .history-panel {
   color: #d4af37 !important; 
   transform: translateX(4px);
   background: transparent !important;
+}
+
+body.theme-minutes-to-midnight {
+  --background-primary: #ffffff;
+  --background-secondary: rgba(240, 240, 240, 0.8);
+  --background-tertiary: #eeeeee;
+  --background-overlay-dark: rgba(255, 255, 255, 0.4); /* Overlay blanco suave */
+  --text-secondary: #666666;
+  --text-interactive: #000000;
+  
+  --accent-color: #000000; /* Todo es blanco y negro */
+  --accent-color-hover: #333333;
+  
+  --border-color: #dddddd;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  
+  --font-main: 'Montserrat', sans-serif;
+  --bg-image: url('assets/covers/mtm-fondo.jpg');
+  --font-main: "Century Gothic", AppleGothic, Futura, sans-serif;
+  
+  /* Invertimos a blanco total para que Century Gothic resalte */
+  --background-primary: #ffffff;
+  --text-primary: #000000;
+  --accent-color: #000000;
+}
+
+body.theme-minutes-to-midnight {
+  font-family: var(--font-main);
+  font-weight: 300; /* Forzamos la variante Light */
+}
+
+/* Fondo de banda en la playa (High Key) */
+body.theme-minutes-to-midnight::before {
+  background-image: linear-gradient(var(--background-overlay-dark), var(--background-overlay-dark)), var(--bg-image);
+  opacity: 1;
+  /* AJUSTE DE POSICIÓN: Subimos al 5% o 0% para ver las caras */
+  background-position: center 55%; 
+  background-size: cover;
+  /* Efecto de fotografía de estudio de alta gama */
+  filter: grayscale(100%) contrast(125%) brightness(105%);
+}
+
+/* Títulos con fuente Serif elegante */
+body.theme-minutes-to-midnight h1 {
+  font-family: var(--font-main);
+  font-weight: 400; /* Un poco más de peso para el título principal */
+  text-transform: uppercase;
+  letter-spacing: 12px; /* Espaciado muy ancho como el original */
+  font-size: 2.2rem;
+  color: #000;
+  text-shadow: none; /* Quitamos sombras para que se vea minimalista */
+}
+
+body.theme-minutes-to-midnight h2, 
+body.theme-minutes-to-midnight h3 {
+  font-family: var(--font-main);
+  font-weight: 300;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+}
+
+/* Paneles de la Era MtM (Limpios y modernos) */
+body.theme-minutes-to-midnight .lyrics-display, 
+body.theme-minutes-to-midnight .analysis-controls {
+  background-color: rgba(255, 255, 255, 0.95);
+  border: 1px solid #000;
+  box-shadow: 20px 20px 0px rgba(0, 0, 0, 0.05); /* Sombra arquitectónica */
+}
+
+body.theme-minutes-to-midnight .subtitle {
+  color: #000000 !important;
+  text-transform: uppercase;
+  letter-spacing: 5px; /* Espaciado muy elegante */
+  font-weight: 400;
+  font-size: 0.75rem;
+  opacity: 0.8;
+  margin-top: 10px;
+}
+
+/* Botón de Historial (Estilo Minimalista/Reloj) */
+body.theme-minutes-to-midnight .history-toggle-btn {
+  font-family: var(--font-main);
+  font-weight: 400;
+  letter-spacing: 3px;
+  background-color: #000 !important;
+  color: #fff !important;
+  border-radius: 0;
+  padding: 10px 30px;
+  border: 1px solid #000;
+}
+
+/* Los paneles de letras y análisis */
+body.theme-minutes-to-midnight .lyric-line {
+  font-family: var(--font-main);
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+body.theme-minutes-to-midnight .cd-disc-wrapper {
+  background: #000;
+  border: 1px solid #333;
+}
+body.theme-minutes-to-midnight .cd-era-name {
+  font-family: var(--font-main);
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+
+body.theme-minutes-to-midnight .history-toggle-btn:hover {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  transform: translate(-3px, -3px);
+  box-shadow: 13px 13px 0px rgba(0,0,0,0.1);
+}
+
+/* Rediseño del Panel de Historial (SIN OPACIDAD) */
+body.theme-minutes-to-midnight .history-panel {
+  background-color: #ffffff !important; /* Blanco sólido, nada de cristal */
+  border-left: 2px solid #000;
+  box-shadow: -20px 0px 50px rgba(0,0,0,0.1);
+  color: #000;
+}
+
+body.theme-minutes-to-midnight .history-header {
+  border-bottom: 2px solid #000;
+  background-color: #f8f8f8;
+}
+
+body.theme-minutes-to-midnight .history-item {
+  background-color: #fff !important;
+  border: 1px solid #eee;
+  border-radius: 0;
+  margin-bottom: 20px;
+  /* Efecto de tarjeta de museo */
+  box-shadow: 5px 5px 0px #eee;
+}
+
+/* Paneles de letras y análisis */
+body.theme-minutes-to-midnight .lyrics-display, 
+body.theme-minutes-to-midnight .analysis-controls,
+body.theme-minutes-to-midnight .chatbot-response {
+  background-color: #ffffff !important; /* Blanco sólido */
+  border: 2px solid #000 !important;
+  border-radius: 0;
+  box-shadow: 15px 15px 0px rgba(0,0,0,0.03);
+}
+
+/* La barra de navegación (Header) */
+body.theme-minutes-to-midnight .main-header {
+  background-color: rgba(255, 255, 255, 0.98);
+  border-bottom: 1px solid #000;
 }
 
 

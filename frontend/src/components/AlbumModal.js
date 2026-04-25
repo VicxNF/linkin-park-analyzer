@@ -56,7 +56,7 @@ const AlbumModal = ({ album, onClose, onSongClick, onAnalyzeAlbum, albumAnalysis
               <ul className="back-tracklist">
                 {album.songs.map((song, index) => (
                   <li key={index} className="back-track-item" onClick={() => { onSongClick(song); onClose(); }}>
-                    <span className="track-index">{(index + 1).toString().padStart(2, '0')}:</span>
+                    <span className="track-index">{(index + 1)}</span>
                     <span className="track-name">{song.title}</span>
                   </li>
                 ))}

@@ -440,6 +440,106 @@ body.light-mode .album-analysis-container {
   font-size: 0.9rem;
 }
 
+.minutes-to-midnight-theme {
+  /* Usamos Barlow Condensed para imitar a Zawya Pro */
+  font-family: 'Barlow Condensed', sans-serif;
+  color: #000000;
+}
+
+.minutes-to-midnight-theme .back-album-title {
+  display: none; /* Borramos el título que preguntabas de dónde salió */
+}
+
+.minutes-to-midnight-theme .back-main-scrollable {
+  position: absolute;
+  top: 6%;          
+  left: 5%;
+  right: 5%;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: visible;
+}
+
+.minutes-to-midnight-theme .back-tracklist {
+  display: flex;
+  flex-wrap: wrap;      
+  justify-content: center;
+  /* Espaciado horizontal y vertical exacto */
+  gap: 12px 15px;       
+  padding: 0;
+  list-style: none;
+  /* Limitamos el ancho para obligar a que se formen las filas del disco original */
+  max-width: 900px;     
+}
+
+.minutes-to-midnight-theme .back-track-item {
+  cursor: pointer;       /* ESTO pone la "manito" de click */
+  user-select: none;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 500;
+  /* Aumentamos el tamaño para que se vea más alta */
+  font-size: 1.25rem; 
+  letter-spacing: 0.2px;
+  color: #000;
+  text-transform: none; 
+  background: transparent !important;
+  display: flex;
+  /* Alineación: los números ya no flotan arriba */
+  align-items: baseline; 
+  transition: all 0.2s ease;
+  /* Estiramos la fuente un 5% verticalmente para el look de imprenta */
+  transform: scaleY(1.05); 
+}
+
+.minutes-to-midnight-theme .back-track-item:hover {
+  color: #888; /* Gris suave, muy minimalista */
+  transform: scale(1.02);
+}
+
+.minutes-to-midnight-theme .track-index {
+  font-size: 0.8rem;    
+  font-weight: 1000;
+  margin-right: 4px;
+  position: relative;
+  /* Bajamos el número para que esté cerca del centro de la palabra */
+  top: -1px; 
+  opacity: 0.9;
+}
+.hybrid-theory-theme .track-index::after,
+.meteora-theme .track-index::after {
+  content: ":";
+}
+
+.minutes-to-midnight-theme .track-name {
+  /* Quitamos el uppercase total, MtM usa mayúsculas iniciales (Title Case) */
+  text-transform: none; 
+}
+
+/* Botón de Análisis: Muy fino y minimalista */
+.minutes-to-midnight-theme .back-analyze-btn {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 6px 30px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  cursor: pointer;
+}
+
+.minutes-to-midnight-theme .back-analyze-btn:hover {
+  background: #333;
+  letter-spacing: 6px; /* Efecto elegante al pasar el mouse */
+}
+
 /* Elementos de realismo */
 .back-legal-area {
   position: absolute;
